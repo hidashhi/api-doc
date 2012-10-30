@@ -1,10 +1,10 @@
 # api-doc index
 ===============
 
-1. [README.md](https://github.com/hidashhi/api-doc/blob/master/README.md)
+1. [README.md](README.md)
 
-2. [test.md](https://github.com/hidashhi/api-doc/blob/master/test.md)
+2. [test.md](test.md)
 
-## [apid-doc TestFolder](https://github.com/hidashhi/api-doc/blob/master/TestFolder/index.md)
+## [apid-doc TestFolder](TestFolder/index.md)
 
-1. [testfile.md](https://github.com/hidashhi/api-doc/blob/master/TestFolder/testfile.md)
+1. [testfile.md](TestFolder/testfile.md)
