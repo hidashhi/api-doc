@@ -1,4 +1,4 @@
 api-doc
 =======
 
-The HidashHi API Documentation
+The HidashHi Public API Documentation
