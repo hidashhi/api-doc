@@ -10,4 +10,5 @@ Add yourself here to test if you can access this repo.
 
 ### Random strings
 
-Ann's got apples...
+Ann's got apples,
+John comes and asks for some.
