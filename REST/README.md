@@ -123,6 +123,6 @@ The guest tokens allow users to interact with the HidashHi resources without req
 **Response (JSON)**
 
     {
-        result: "success"
+        result: "success",
+        message: "Removed guest token"
     }
-
