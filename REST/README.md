@@ -42,6 +42,10 @@ The HidashHi REST API supports cookie session and OAuth2 authentication.
 
 // TODO
 
+## User account handling ##
+
+// TODO
+
 ## Guest Tokens ##
 The guest tokens allow users to interact with the HidashHi resources without requiring an account, via an application where they are already registered. There are no limitations to guest users, as they may behave like any other registered user.
 
