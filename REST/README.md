@@ -58,15 +58,10 @@ The guest tokens allow users to interact with the HidashHi resources without req
 **Response (JSON)**
 
     {
-
         result: "success",
-
         token: "token_string",
-
         profileId: "profile_id_for_guest",
-
         email: "email_from_params"
-
     }
 
 ----------
@@ -86,23 +81,14 @@ The guest tokens allow users to interact with the HidashHi resources without req
 **Response (JSON)**
 
     {
-
         total: "no_of_items_found",
-
         skip: "skip_from_params",
-
         limit: "limit_from_params",
-
         tokens: [{
-
             token: "token_string,
-
             profileId: "profile_id_for_guest",
-
             email: "email_for_guest"
-
         }]
-
     }
 
 ----------
@@ -137,8 +123,6 @@ The guest tokens allow users to interact with the HidashHi resources without req
 **Response (JSON)**
 
     {
-
         result: "success"
-
     }
 
