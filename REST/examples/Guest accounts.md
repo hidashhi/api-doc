@@ -74,7 +74,7 @@ The response will be a JSON:
 
 ## Guest token removal
 
-If a particular token will no longer be used or a security issue occurs, the token may be removed by calling `DELETE` on its information endpoint:
+This is not recommended for normal usage, since history and other information will be lost. A token will expire on its own anyway. If a particular token must no longer be used or a security issue occurs, the token may be removed by calling `DELETE` on its information endpoint:
 
 `DELETE http://rest.hidashhi.com/guestTokens/token_code_for_alice?appId=app_id_1234567890&apiKey=random_secret_api_key`
 
