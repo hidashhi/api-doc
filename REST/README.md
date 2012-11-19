@@ -118,15 +118,10 @@ The guest tokens allow users to interact with the HidashHi resources without req
 **Response (JSON)**
 
     {
-
         result: "success",
-
         token: "token_string",
-
         profileId: "profile_id_for_guest",
-
         email: "email_for_guest"
-
     }
 
 ----------
