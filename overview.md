@@ -5,6 +5,10 @@
 
 2. [test.md](test.md)
 
-## [apid-doc TestFolder](TestFolder/index.md)
+## [api-doc REST](REST/index.md)
+
+1. [README.md](REST/README.md)
+
+## [api-doc TestFolder](TestFolder/index.md)
 
 1. [testfile.md](TestFolder/testfile.md)
