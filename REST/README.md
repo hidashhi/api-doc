@@ -56,12 +56,22 @@ The guest tokens allow users to interact with the HidashHi resources without req
 `email` - user's email address
 
 **Response (JSON)**
-`{
-    result: "success",
-    token: "token_string",
-    profileId: "profile_id_for_guest",
-    email: "email_from_params"
-}`
+
+`
+
+{
+
+        result: "success",
+
+        token: "token_string",
+
+        profileId: "profile_id_for_guest",
+
+        email: "email_from_params"
+
+}
+
+`
 
 ----------
 
@@ -78,16 +88,30 @@ The guest tokens allow users to interact with the HidashHi resources without req
 `limit` - number of results. Default: 20
 
 **Response (JSON)**
-`{
-    total: "no_of_items_found",
-    skip: "skip_from_params",
-    limit: "limit_from_params",
-    tokens: [{
-        token: "token_string,
-        profileId: "profile_id_for_guest",
-        email: "email_for_guest"
-    }]
-}`
+
+`
+
+{
+
+        total: "no_of_items_found",
+
+        skip: "skip_from_params",
+
+        limit: "limit_from_params",
+
+        tokens: [{
+
+            token: "token_string,
+
+            profileId: "profile_id_for_guest",
+
+            email: "email_for_guest"
+
+        }]
+
+}
+
+`
 
 ----------
 
@@ -100,12 +124,22 @@ The guest tokens allow users to interact with the HidashHi resources without req
 `apiKey` - private key assigned to the application
 
 **Response (JSON)**
-`{
-    result: "success",
-    token: "token_string",
-    profileId: "profile_id_for_guest",
-    email: "email_for_guest"
-}`
+
+`
+
+{
+
+        result: "success",
+
+        token: "token_string",
+
+        profileId: "profile_id_for_guest",
+
+        email: "email_for_guest"
+
+}
+
+`
 
 ----------
 
@@ -118,6 +152,13 @@ The guest tokens allow users to interact with the HidashHi resources without req
 `apiKey` - private key assigned to the application
 
 **Response (JSON)**
-`{
-    result: "success"
-}`
+
+`
+
+{
+
+        result: "success"
+
+}
+
+`
