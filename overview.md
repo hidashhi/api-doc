@@ -1,14 +1,14 @@
 # api-doc index
 ===============
 
-1. [README.md](README.md)
+1. [HidashHi documentation](README.md)
 
-2. [test.md](test.md)
+2. [Access test file](test.md)
 
 ## [api-doc REST](REST/index.md)
 
-1. [README.md](REST/README.md)
+1. [REST API](REST/README.md)
 
-## [api-doc TestFolder](TestFolder/index.md)
+## [api-doc JS](JS/index.md)
 
-1. [testfile.md](TestFolder/testfile.md)
+1. [JS API](JS/README.md)
