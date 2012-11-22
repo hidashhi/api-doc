@@ -26,7 +26,7 @@ The HidashHi REST API supports cookie session and OAuth2 authentication.
 
 ----------
 
-> `POST /signout`
+> `GET /signout`
 
 **Parameters (url)**
 
