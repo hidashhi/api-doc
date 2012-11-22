@@ -6,4 +6,4 @@ The API can be used to build applications, tools or services around the HidashHi
 
 Enclosed in this repository you will find the official HidashHi API documentation. Feel free to fork and contribute to any topic.
 
-**Warning**, the HidashHi API is in **beta testing phase**. The documentation does not reflect the actual nor the final behavior of the API and both may be subject to change.
+**Warning**, the HidashHi API is in **beta testing phase**. The documentation does not reflect the final behavior of the API as both may be subject to change.
