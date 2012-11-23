@@ -1,28 +1,28 @@
 # api-doc index
 ===============
 
-1. [HidashHi documentation](README.md)
+* [HidashHi documentation](README.md)
 
-2. [Access test file](test.md)
+* [Access test file](test.md)
 
-## [api-doc REST](REST/index.md)
+## api-doc REST
 
-1. [REST API](REST/README.md)
+* [REST API](REST/README.md)
 
-    ### [api-doc REST examples](REST/examples/index.md)
+    ### api-doc REST examples
 
-    1. [Guest accounts](REST/examples/Guest accounts.md)
+    * [Guest accounts](REST/examples/guest_accounts.md)
 
-## [api-doc JS](JS/index.md)
+## api-doc JS
 
-1. [JS API](JS/README.md)
+* [JS API](JS/README.md)
 
-2. [Call](JS/Call.md)
+* [Call](JS/call.md)
 
-3. [Communication Flow](JS/Communication Flow.md)
+* [Communication Flow](JS/communication_flow.md)
 
-4. [Events](JS/Events.md)
+* [Events](JS/events.md)
 
-5. [Methods](JS/Methods.md)
+* [Methods](JS/methods.md)
 
-6. [TextMessage](JS/TextMessage.md)
+* [TextMessage](JS/text_message.md)
