@@ -29,4 +29,4 @@
 
 ## [FAQ](faq.md)
 
-## [FAQ](samples+and+how+tos.md)
+## [Samples and How TOs](samples+and+how+tos.md)
