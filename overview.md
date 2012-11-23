@@ -5,24 +5,28 @@
 
 * [Access test file](test.md)
 
-## api-doc REST
+## [api-doc REST](api+rest.md)
 
-* [REST API](REST/README.md)
+* [REST API index](api/rest/REST/README.md)
 
     ### api-doc REST examples
 
-    * [Guest accounts](REST/examples/guest_accounts.md)
+    * [Guest accounts](api/rest/examples/guest+accounts.md)
 
-## api-doc JS
+## [api-doc JS index](api+js.md)
 
-* [JS API](JS/README.md)
+* [JS API](api/js/README.md)
 
-* [Call](JS/call.md)
+* [Call](api/js/call.md)
 
-* [Communication Flow](JS/communication_flow.md)
+* [Communication Flow](api/js/communication+flow.md)
 
-* [Events](JS/events.md)
+* [Events](api/js/events.md)
 
-* [Methods](JS/methods.md)
+* [Methods](api/js/methods.md)
 
-* [TextMessage](JS/text_message.md)
+* [TextMessage](api/js/text_message.md)
+
+## [FAQ](faq.md)
+
+## [FAQ](samples+and+how+tos.md)
