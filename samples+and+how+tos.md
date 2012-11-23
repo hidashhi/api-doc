@@ -1,4 +1,4 @@
-# Samples and How TOs index
+api-doc Samples and How TOs index
 ===========================
 
 * nothing here yet

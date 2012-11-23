@@ -1,19 +1,19 @@
-# api-doc index
+api-doc index
 ===============
 
 * [HidashHi documentation](README.md)
 
 * [Access test file](test.md)
 
-## [api-doc REST](api+rest.md)
+# [api-doc REST](api+rest.md)
 
 * [REST API index](api/rest/REST/README.md)
 
-    ### api-doc REST examples
+    ## api-doc REST examples
 
     * [Guest accounts](api/rest/examples/guest+accounts.md)
 
-## [api-doc JS index](api+js.md)
+# [api-doc JS index](api+js.md)
 
 * [JS API](api/js/README.md)
 
@@ -27,6 +27,6 @@
 
 * [TextMessage](api/js/text_message.md)
 
-## [FAQ](faq.md)
+# [FAQ](faq.md)
 
-## [Samples and How TOs](samples+and+how+tos.md)
+# [Samples and How TOs](samples+and+how+tos.md)

@@ -1,4 +1,4 @@
-# api-doc JS index
+api-doc JS index
 ===================
 
 * [JS API](api/js/README.md)
