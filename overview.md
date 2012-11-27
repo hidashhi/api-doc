@@ -11,15 +11,15 @@ api-doc index
 
     ## api-doc REST examples
 
-    * [Guest accounts](api/rest/examples/guest+accounts.md)
+    * [Guest accounts](api/rest/examples/guest_accounts.md)
 
-# [api-doc JS index](api+js.md)
+# [api-doc JS index](api_js.md)
 
 * [JS API](api/js/README.md)
 
 * [Call](api/js/call.md)
 
-* [Communication Flow](api/js/communication+flow.md)
+* [Communication Flow](api/js/communication_flow.md)
 
 * [Events](api/js/events.md)
 
@@ -29,4 +29,4 @@ api-doc index
 
 # [FAQ](faq.md)
 
-# [Samples and How TOs](samples+and+how+tos.md)
+# [Samples and How TOs](samples_and_how_tos.md)
