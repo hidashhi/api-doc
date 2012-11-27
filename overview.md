@@ -5,7 +5,7 @@ api-doc index
 
 * [Access test file](test.md)
 
-# [api-doc REST](api+rest.md)
+# [api-doc REST](api_rest.md)
 
 * [REST API index](api/rest/REST/README.md)
 
