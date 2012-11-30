@@ -8,36 +8,6 @@ The REST methodology uses JSON as the output format for the API. We may extend o
 
 The HidashHi REST API supports cookie session and OAuth2 authentication.
 
-### Session auth ####
-
-> `POST /login`
-
-**Parameters (body)**
-
-`email` - user's email address
-
-`password` - user's password
-
-`redirect_uri` - redirect url to an authorized location
-
-**Response**
-
-*cookie is set and the user is redirected to the* `redirect_uri` *in the parameters*
-
-----------
-
-> `GET /signout`
-
-**Parameters (url)**
-
-`redirect_uri` - redirect url to an authorized location
-
-**Response**
-
-*cookie is removed and the user is redirected to the* `redirect_uri` *in the parameters*
-
-----------
-
 #### OAuth2 ####
 
 // TODO
@@ -130,3 +100,20 @@ The guest tokens allow users to interact with the HidashHi resources without req
         result: "success",
         message: "Removed guest token"
     }
+
+## Profile ##
+A profile is a users personal representation.
+
+> `POST /profile/image`
+
+**Parameters (url/body)**
+
+`profileId` - The profile for which to update the image
+
+**Response (JSON)**
+
+    {
+        result: "success"
+    }
+
+----------
