@@ -19,7 +19,6 @@ A user's account consists of general, private user information, such as credenti
 #### Generic account information ####
 
 > `GET /user/account`
-**Parameters (url)**
 
 **Response (JSON)**
 
@@ -50,7 +49,7 @@ A user's account consists of general, private user information, such as credenti
 ## Guest Tokens ##
 The guest tokens allow users to interact with the HidashHi resources without requiring an account, via an application where they are already registered. There are no limitations to guest users, as they may behave like any other registered user.
 
-> `POST /guestTokens`
+> `POST /guestTokens` **OBSOLETE, use** `GET /guestTokens`
 
 **Parameters (url)**
 
@@ -83,7 +82,9 @@ The guest tokens allow users to interact with the HidashHi resources without req
 
 `limit` - number of results. Default: 20
 
-**Response (JSON)**
+`email` - *optional*, if not set, all the guest tokens will be returned
+
+**Response (JSON) without** `email` **set**
 
     {
         total: "no_of_items_found",
@@ -94,6 +95,15 @@ The guest tokens allow users to interact with the HidashHi resources without req
             profileId: "profile_id_for_guest",
             email: "email_for_guest"
         }]
+    }
+
+**Response (JSON) with** `email` **set**
+
+    {
+        result: "success",
+        token: "token_string",
+        profileId: "profile_id_for_guest",
+        email: "email_from_query"
     }
 
 ----------
