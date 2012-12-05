@@ -14,7 +14,38 @@ The HidashHi REST API supports cookie session and OAuth2 authentication.
 
 ## User account handling ##
 
-// TODO
+A user's account consists of general, private user information, such as credentials, profiles, subscriptions and e-mail addresses. Note that when using the Hi-Hi resources to interact with others, a user's profile is used, not the account. 
+
+#### Generic account information ####
+
+> `GET /user/account`
+**Parameters (url)**
+
+**Response (JSON)**
+
+    {
+        result: "success",
+        account: {
+            _id: String,
+            defaultProfile: String representing the ID of the profile marked as default,
+            developerProfile: String representing the ID of the profile marked as developer,
+            profiles: [ String ],
+            emails: [ {
+                address: String representing the e-mail address
+                validated: Boolean
+            } ],
+            registerApp: String,
+            subscription: String,
+            newsletter: Boolean,
+            credentials: [ String ],
+            active: Boolean,
+            lastLogin: Date,
+            updatedAt: Date,
+            createdAt: Date,
+        }
+    }
+
+// TODO - continue documenting the account
 
 ## Guest Tokens ##
 The guest tokens allow users to interact with the HidashHi resources without requiring an account, via an application where they are already registered. There are no limitations to guest users, as they may behave like any other registered user.
