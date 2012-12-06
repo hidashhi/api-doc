@@ -14,7 +14,7 @@ The HidashHi REST API supports cookie session and OAuth2 authentication.
 
 ## User account handling ##
 
-A user's account consists of general, private user information, such as credentials, profiles, subscriptions and e-mail addresses. Note that when using the Hi-Hi resources to interact with others, a user's profile is used, not the account. 
+A user's account consists of general, private user information, such as credentials, profiles, subscriptions and e-mail addresses. Note that when using the Hi-Hi resources to interact with others, a user's profile is used, not the account.
 
 #### Generic account information ####
 
@@ -40,9 +40,27 @@ A user's account consists of general, private user information, such as credenti
             active: Boolean,
             lastLogin: Date,
             updatedAt: Date,
-            createdAt: Date,
+            createdAt: Date
         }
     }
+
+#### Updating account information ####
+
+> `PUT /user/account`
+
+**Parameters (body)**
+
+`subscription` - // TODO
+
+`newsletter` - true/false whether the user agrees to receive the newsletter or not
+
+`oldPassword` - user's login password
+
+`newPassword` - user's new login password
+
+**Response (JSON)**
+
+Same as `GET /user/account`, with the new information updated.
 
 // TODO - continue documenting the account
 
