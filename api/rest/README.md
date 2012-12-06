@@ -64,6 +64,124 @@ Same as `GET /user/account`, with the new information updated.
 
 // TODO - continue documenting the account
 
+## User profiles handling ##
+
+Each user's profile is like a personna representing the user within various environments. A user may choose to use the Hi-Hi services to interact with family and business environments, but keep them separated via different profiles. The criteria depend solely on the user's preferences.
+
+#### Retrieving the list of profiles ####
+
+> `GET /user/profiles`
+
+// TODO
+
+#### Adding a new profile ####
+
+> `POST /user/profiles`
+
+// TODO
+
+#### Updating a profile ####
+
+> `PUT /user/profile/profileId`
+
+// TODO
+
+#### Deleting a profile ####
+
+> `DELETE /user/profile/profileId`
+
+// TODO
+
+#### Default profile ####
+
+A user's default profile is a normal profile used for the main interactions with the website, for comments and other features.
+
+> `GET /user/defaultProfile`
+
+**Response (JSON)**
+
+    {
+        result: "success",
+        profile: {
+            _id: id of profile,
+            userId: id_of_user,
+            nickname: profile_nickname,
+            default: true/false,
+            developer: true/false,
+            public: true/false,
+            active: true/false,
+            email: email_address,
+            emailPrivacy: private/contact/public,
+            firstname: first_name,
+            firstnamePrivacy: private/contact/public,
+            lastname: last_name,
+            lastnamePrivacy: private/contact/public,
+            address: address,
+            addressPrivacy: private/contact/public,
+            company: company_name,
+            companyPrivacy private/contact/public,
+            mobile: mobile_phone_no,
+            mobilePrivacy private/contact/public,
+            hasAvatar: true/false,
+            updatedAt: Date,
+            createdAt: Date,
+        }
+    }
+
+> `PUT /user/defaultProfile/profileId`
+
+**Response (JSON)**
+
+    {
+        result: "success",
+        message: "Changed default profile to profileId"
+    }
+
+#### Developer profile ####
+
+A user's developer profile is a normal profile used for application development, deployment and management. Once set, it cannot be changed with another profile. Profile information, however, may be changed just like before.
+
+> `GET /user/developerProfile`
+
+**Response (JSON)**
+
+    {
+        result: "success",
+        profile: {
+            _id: id of profile,
+            userId: id_of_user,
+            nickname: profile_nickname,
+            default: true/false,
+            developer: true/false,
+            public: true/false,
+            active: true/false,
+            email: email_address,
+            emailPrivacy: private/contact/public,
+            firstname: first_name,
+            firstnamePrivacy: private/contact/public,
+            lastname: last_name,
+            lastnamePrivacy: private/contact/public,
+            address: address,
+            addressPrivacy: private/contact/public,
+            company: company_name,
+            companyPrivacy private/contact/public,
+            mobile: mobile_phone_no,
+            mobilePrivacy private/contact/public,
+            hasAvatar: true/false,
+            updatedAt: Date,
+            createdAt: Date,
+        }
+    }
+
+> `PUT /user/developerProfile/profileId`
+
+**Response (JSON)**
+
+    {
+        result: "success",
+        message: "Changed developer profile to profileId"
+    }
+
 ## Guest Tokens ##
 The guest tokens allow users to interact with the HidashHi resources without requiring an account, via an application where they are already registered. There are no limitations to guest users, as they may behave like any other registered user.
 
