@@ -78,7 +78,7 @@ But, unlike the callbacks for the previous events, this callback will receive on
 
 #### Example
 
-You can use the following code snippet as a starting point, to use text messages in your application.
+You can use the following code snippet as a starting point to use text messages in your application.
 
 	JSAPI.connect(...);
 
@@ -108,11 +108,12 @@ You can use the following code snippet as a starting point, to use text messages
 	var chainId = textMessage.chainId;
 	JSAPI.sendTextMessage(bob, [ alice, john ], chainId, 'Hi!');
 
-	// Say Alice wants to edit its message:
+	// Say Alice wants to edit her message:
 	textMessage.edit('Hello!');
 
-	// Bob decided to remove its message:
+	// Bob decided to remove his message:
 	textMessage.remove();
+
 
 ## Advanced Options
 
