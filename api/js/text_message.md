@@ -16,12 +16,12 @@ between users, edit existing text messages or delete them from a conversation wi
 
 To send a text message to another user, you can use `JSAPI.sendTextMessage`:
 
-	JSAPI.sendTextMessage(
+	JSAPI.sendTextMessage = function(
 		senderProfileId,
 		receiversProfilesIds,
 		chainId,
 		textMessage
-		);
+		) { /* ... */ };
 
 The `sendTextMessage` method returns a `JSAPI.TextMessage` object and it requires several arguments:
 
