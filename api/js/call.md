@@ -13,6 +13,8 @@ The JavaScript API allows developers to integrate video conferencing within thei
 ## Getting Started
 
 
+#### Initiating calls
+
 Initiating a call requires calling the `JSAPI.openCall` method:
 
 	JSAPI.openCall = function(options) { /* ... */ }
@@ -51,6 +53,9 @@ Now, let's say user `A` calls user `B` from `c1` and user `B` takes the call fro
 
 Before accepting or declining a call, a receiver is neither active nor passive.
 
+
+#### Handling incoming calls
+
 When the JavaScript API receives a call (that is, when it receives a `call.init` message), it first tries to determine the role of the connected participant. It then creates a `JSAPI.Call` object for that call, if the call was not initiated from that connection.
 
 After that, it notifies the application that is consuming the API about the received call, according to the role of that participant. If the user is an active initiator or a passive initiator, then the JavaScript API will fire no event. However, if the participant is a passive initiator, then the JavaScript API will switch that connection to a pending state and notify the messaging server about it by sending a `call.pending` message.
@@ -64,6 +69,9 @@ You can register an observer for this event using:
 	JSAPI.on('call:received', function(call) {
 		// Handle incoming call...
 	});
+
+
+#### Accepting calls
 
 At this phase, the user can accept, decline or ignore the call within a timeframe imposed by the ringing timeout, which is managed by the messaging server. If the messaging server does not receive a response for the `call.init` message within that time, it will send a `call.ringing_timeout` message to all participants. When the JavaScript API receives a `call.ringing_timeout` message for the connected user, it emits a `call:end` event through the `JSAPI` object, to notify the client application that the call has ended for that user. Note that this event is also emitted by the JavaScript API after a `call.hangup` message sent by the connected user from the same connection or another connection.
 
@@ -79,4 +87,10 @@ The registered callback function will receive the following arguments:
 - `acceptedBy` - the profile id of the accepting participant
 - `fromConnection` - the id of the connection from where the participant accepted the call
 
-You can decline a call using `JSAPI.Call.reject`.
+
+#### Declining calls
+
+You can decline a call using `JSAPI.Call.reject` in the callback registered for the `call.received` event described above. As `JSAPI.Call.accept`, this method will first update local state and will send a `call.reject` message to the messaging server.
+
+When the JavaScript API receives a `call.reject` message, it emits a `call:reject` event through the `JSAPI` object. Then, if the connected user is the same as the participant that declined the call, it will also emit a `call:end` event through the same `JSAPI` object.
+
