@@ -62,7 +62,29 @@ A user's account consists of general, private user information, such as credenti
 
 Same as `GET /user/account`, with the new information updated.
 
-// TODO - continue documenting the account
+#### Adding an e-mail address ####
+
+> `POST /user/account/emails`
+
+**Parameters (body)**
+
+`email` - new email address
+
+**Response (JSON)**
+
+    {
+        result: "success",
+        message: "Added e-mail address"
+    }
+
+> `DELETE /user/account/emails/email_address`
+
+**Response (JSON)**
+
+    {
+        result: "success",
+        message: "Deleted e-mail address"
+    }
 
 ## User profiles handling ##
 
