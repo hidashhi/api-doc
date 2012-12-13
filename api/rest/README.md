@@ -292,5 +292,3 @@ A profile is a users personal representation.
     {
         result: "success"
     }
-
-----------
