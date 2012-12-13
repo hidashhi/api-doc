@@ -62,7 +62,7 @@ A user's account consists of general, private user information, such as credenti
 
 Same as `GET /user/account`, with the new information updated.
 
-#### Adding an e-mail address ####
+#### Managing an e-mail addresses ####
 
 > `POST /user/account/emails`
 
@@ -94,25 +94,83 @@ Each user's profile is like a personna representing the user within various envi
 
 > `GET /user/profiles`
 
-// TODO
+**Parameters (query)**
+
+`skip` - number of profiles to jump over before displaying. Defaults to 0
+
+`limit` - number of profiles to return. Defaults to 20
+
+**Response (JSON)**
+
+    {
+        total: total_number_of_profiles,
+        skip: query_skip,
+        limit: query_limit,
+        objects: [ profile_objects ]
+    }
 
 #### Adding a new profile ####
 
 > `POST /user/profiles`
 
-// TODO
+**Parameters (query)**
+
+`nickname`
+
+`firstname`
+
+`firstnamePrivacy` - can be `public`, `contact`, `private`. Defaults to `contact`
+
+`lastname`
+
+`lastnamePrivacy`
+
+`email`
+
+`emailPrivacy`
+
+**Response (JSON)**
+
+    {
+        result: "success",
+        profile: { user_profile }
+    }
 
 #### Updating a profile ####
 
 > `PUT /user/profile/profileId`
 
-// TODO
+**Parameters (query)**
+
+`firstname`
+
+`firstnamePrivacy` - can be `public`, `contact`, `private`
+
+`lastname`
+
+`lastnamePrivacy`
+
+`email`
+
+`emailPrivacy`
+
+**Response (JSON)**
+
+    {
+        result: "success",
+        message: "Updated profile"
+    }
 
 #### Deleting a profile ####
 
 > `DELETE /user/profile/profileId`
 
-// TODO
+**Response (JSON)**
+
+    {
+        result: "success",
+        "message": "Deleted profile"
+    }
 
 #### Default profile ####
 
@@ -202,6 +260,65 @@ A user's developer profile is a normal profile used for application development,
     {
         result: "success",
         message: "Changed developer profile to profileId"
+    }
+
+## User contacts handling ##
+
+A user's contact is a connection between the user's profile and another user's profile.
+
+> `GET /user/contact`
+
+**Parameters (query)**
+
+`skip` - number of entries to jump over before returning the result
+
+`limit` - number of entries to return
+
+`userProfileId` - filter for the contacts of a user profile
+
+`contactProfileId` - filter for the contacts to a user profile
+
+**Response (JSON)**
+
+    {
+        _id: contact_id
+        nickname: nickname_of_the_contact,
+        contactProfileId: profileId_of_the_contact,
+        userProfileId: profileId_of_the_user,
+        userId: user_id,
+        createdByAppId: id_of_application,
+        emailShared: ,
+        lastnameShared: ,
+        firstnameShared: ,
+        groups: [],
+        updatedAt: Date,
+        createdAt: Date
+    }
+
+> `PUT /user/contact/contactId`
+
+**Parameters (body)**
+
+`contactId`
+
+`groups`
+
+`firstname`
+
+`lastname`
+
+`email`
+
+**Response (JSON)**
+
+    { contact_object }
+
+> `DELETE /user/contact/contactId`
+
+**Response (JSON)**
+
+    {
+        result: "success"
     }
 
 ## Guest Tokens ##
