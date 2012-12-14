@@ -8,11 +8,10 @@
 Using the JavaScript API you can send and receive text messages
 between users, edit existing text messages or delete them from a conversation with ease. The platform provides a secure and very flexible set of primitives that allows developers to create various kinds of applications like instant messaging or chat rooms, with applicability in any field you can think of.
 
-**NOTE:** The following sections assume that you successfully configured your application to work with the JavaScript API (**link here**) and the user was successfully connected (**link here**).
+**NOTE:** The following sections assume that you successfully configured your application to work with the JavaScript API and the user was successfully connected.
 
 
 ## Getting Started
-
 
 To send a text message to another user, you can use `JSAPI.sendTextMessage`:
 

@@ -7,7 +7,7 @@
 
 The JavaScript API allows developers to integrate video conferencing within their applications.
 
-**NOTE:** The following sections assume that you successfully configured your application to work with the JavaScript API (**link here**) and the user was successfully connected (**link here**).
+**NOTE:** The following sections assume that you successfully configured your application to work with the JavaScript API and the user was successfully connected.
 
 
 ## Getting Started
@@ -15,7 +15,7 @@ The JavaScript API allows developers to integrate video conferencing within thei
 
 #### Initiating Calls
 
-Initiating a call requires calling the `JSAPI.openCall` method:
+You can initiate a call by calling the `JSAPI.openCall` method:
 
 	JSAPI.openCall = function(options) { /* ... */ }
 
@@ -141,3 +141,5 @@ As for the messages previously described, the JavaScript API will emit a `call:h
 	JSAPI.on('call:hangup', function(call, participant) {
 		// Handle event...
 	});
+
+When there is only one active participant left, the messaging server sends a `call.end` message, and the JavaScript API will react to this message by firing a `call:end` event. The callback registered for this event will receive a reference to the call being ended.
