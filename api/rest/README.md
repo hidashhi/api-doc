@@ -1,24 +1,30 @@
-# HidashHi REST API Documentation #
+# HidashHi REST API Documentation
 
-## Introduction ##
+Navigation:
+[Overview](../../README.md) |
+[JS API](../js/README.md) |
+[Examples & Tutorials](../../samples_and_how_tos.md) | 
+[FAQ](../../faq.md)
+
+## Introduction
 
 The REST methodology uses JSON as the output format for the API. We may extend our support to other formats, but we recommend to use JSON at all times. All requests have to be made via HTTP.
 
-## Authentication ##
+## Authentication
 
-The HidashHi REST API supports cookie session and OAuth2 authentication.
+The HidashHi REST API supports cookie session and [OAuth2](http://oauth.net/2/) token authentication.
 
-#### OAuth2 ####
+#### OAuth2
 
 // TODO
 
-## User account handling ##
+## User account handling
 
-A user's account consists of general, private user information, such as credentials, profiles, subscriptions and e-mail addresses. Note that when using the Hi-Hi resources to interact with others, a user's profile is used, not the account.
+A user's account consists of general, private user information, such as credentials, profiles, subscriptions and e-mail addresses. Note that when using the Hi-Hi resources to interact with others, a user's profile is used, not the account. An account can have multiple profiles, however a user can decide to authorize an application to only have access to certain profiles and not the user account itself. This way the user should be able to control his identity, as he can have an anonymous profile to use with certain applications. It is in the users best interest and the applications responsibility to respect the users privacy. Therefor profiles should not be able to be connected to one certain user and the user itself should not be exposed to others, only for the user himself.
 
-#### Generic account information ####
+#### Get account information
 
-> `GET /user/account`
+> 'GET /user/account'
 
 **Response (JSON)**
 
@@ -26,33 +32,22 @@ A user's account consists of general, private user information, such as credenti
         result: "success",
         account: {
             _id: String,
-            defaultProfile: String representing the ID of the profile marked as default,
-            developerProfile: String representing the ID of the profile marked as developer,
+            defaultProfile: String,
+            developerProfile: String,
             profiles: [ String ],
             emails: [ {
                 address: String representing the e-mail address
                 validated: Boolean
             } ],
-            registerApp: String,
-            subscription: String,
-            newsletter: Boolean,
-            credentials: [ String ],
-            active: Boolean,
-            lastLogin: Date,
-            updatedAt: Date,
-            createdAt: Date
+            
         }
     }
 
-#### Updating account information ####
+#### Updating account information
 
 > `PUT /user/account`
 
 **Parameters (body)**
-
-`subscription` - // TODO
-
-`newsletter` - true/false whether the user agrees to receive the newsletter or not
 
 `oldPassword` - user's login password
 
@@ -62,7 +57,7 @@ A user's account consists of general, private user information, such as credenti
 
 Same as `GET /user/account`, with the new information updated.
 
-#### Managing an e-mail addresses ####
+#### Managing an e-mail addresses
 
 > `POST /user/account/emails`
 
@@ -77,7 +72,7 @@ Same as `GET /user/account`, with the new information updated.
         message: "Added e-mail address"
     }
 
-> `DELETE /user/account/emails/email_address`
+> `DELETE /user/account/emails/[email_address]`
 
 **Response (JSON)**
 
@@ -86,11 +81,11 @@ Same as `GET /user/account`, with the new information updated.
         message: "Deleted e-mail address"
     }
 
-## User profiles handling ##
+## User profiles handling
 
-Each user's profile is like a personna representing the user within various environments. A user may choose to use the Hi-Hi services to interact with family and business environments, but keep them separated via different profiles. The criteria depend solely on the user's preferences.
+Each user's profile is like a persona representing the user within various environments. A user may choose to use the Hi-Hi services to interact with family and business environments, but keep them separated via different profiles. The criteria depend solely on the user's preferences.
 
-#### Retrieving the list of profiles ####
+#### Retrieving the list of profiles
 
 > `GET /user/profiles`
 
@@ -109,7 +104,7 @@ Each user's profile is like a personna representing the user within various envi
         objects: [ profile_objects ]
     }
 
-#### Adding a new profile ####
+#### Adding a new profile
 
 > `POST /user/profiles`
 
@@ -136,7 +131,7 @@ Each user's profile is like a personna representing the user within various envi
         profile: { user_profile }
     }
 
-#### Updating a profile ####
+#### Updating a profile
 
 > `PUT /user/profile/profileId`
 
@@ -172,9 +167,9 @@ Each user's profile is like a personna representing the user within various envi
         "message": "Deleted profile"
     }
 
-#### Default profile ####
+#### Default profile
 
-A user's default profile is a normal profile used for the main interactions with the website, for comments and other features.
+A user's default profile is a normal profile chosen by default for the main interactions with the website, for comments and other features.
 
 > `GET /user/defaultProfile`
 
@@ -184,7 +179,7 @@ A user's default profile is a normal profile used for the main interactions with
         result: "success",
         profile: {
             _id: id of profile,
-            userId: id_of_user,
+            (userId: id_of_user,)
             nickname: profile_nickname,
             default: true/false,
             developer: true/false,
@@ -217,9 +212,9 @@ A user's default profile is a normal profile used for the main interactions with
         message: "Changed default profile to profileId"
     }
 
-#### Developer profile ####
+#### Developer profile
 
-A user's developer profile is a normal profile used for application development, deployment and management. Once set, it cannot be changed with another profile. Profile information, however, may be changed just like before.
+A user's developer profile is a normal profile used for application development, deployment and management. Once set, it cannot be switched with another profile. Profile information, however, may be changed just like before.
 
 > `GET /user/developerProfile`
 
@@ -262,7 +257,7 @@ A user's developer profile is a normal profile used for application development,
         message: "Changed developer profile to profileId"
     }
 
-## User contacts handling ##
+## User contacts handling
 
 A user's contact is a connection between the user's profile and another user's profile.
 
@@ -321,7 +316,7 @@ A user's contact is a connection between the user's profile and another user's p
         result: "success"
     }
 
-## Guest Tokens ##
+## Guest Tokens
 The guest tokens allow users to interact with the HidashHi resources without requiring an account, via an application where they are already registered. There are no limitations to guest users, as they may behave like any other registered user.
 
 > `POST /guestTokens` **OBSOLETE, use** `GET /guestTokens`
@@ -417,7 +412,7 @@ The guest tokens allow users to interact with the HidashHi resources without req
         message: "Removed guest token"
     }
 
-## Profile ##
+## Profile
 A profile is a users personal representation.
 
 > `POST /profile/image`

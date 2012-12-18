@@ -1,2 +1,5 @@
 ._*
 /README-MarkdownPadPreview.html
+.DS_Store
+*.sublime-project
+*.sublime-workspace

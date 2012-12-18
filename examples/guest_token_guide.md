@@ -1,4 +1,14 @@
-# Guest accounts examples
+# Guest token guide
+
+Navigation:
+[Overview](../README.md) |
+[REST API](../api/rest/README.md) |
+[JS API](../api/js/README.md) |
+[Examples & Tutorials](../samples_and_how_tos.md) |
+[FAQ](../faq.md)
+
+## Introduction
+This guide shows how guest tokens are managed and used.
 
 This guide assumes that the developer has an application with the id "app_id_1234567890", and the api key "random_secret_api_key".
 
