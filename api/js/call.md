@@ -2,7 +2,7 @@
 # JavaScript API Call Management
 
 Navigation:
-[Overview](../../README.md) |
+[Overview](../../overview.md) |
 [REST API](../rest/README.md) |
 [JS API](../js/README.md) |
 [Examples & Tutorials](../../samples_and_how_tos.md) |

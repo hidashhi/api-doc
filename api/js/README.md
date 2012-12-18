@@ -1,7 +1,7 @@
 # HidashHi JS API Documentation
 
 Navigation:
-[Overview](../../README.md) |
+[Overview](../../overview.md) |
 [REST API](../rest/README.md) |
 [Examples & Tutorials](../../samples_and_how_tos.md) |
 [FAQ](../../faq.md)
