@@ -14,6 +14,6 @@ Other sections:
 - [FAQ - Frequently Asked Questions](faq.md)
 - [Examples & Tutorials](samples_and_how_tos.md)
 
-Enclosed in this repository you will find the official HidashHi API documentation. Feel free to fork and contribute to any topic.
+Enclosed in this repository you will find the official HidashHi API documentation. Feel free to [fork on github](https://github.com/hidashhi/api-doc) and contribute to any topic.
 
-**Warning:** the HidashHi API is in **beta testing phase**. The documentation does not reflect the final behavior of the API as both may be subject to change.
+**Warning:** the HidashHi API is in **beta testing phase**. The documentation does not reflect the final behavior of the API as it may be subject to change.
