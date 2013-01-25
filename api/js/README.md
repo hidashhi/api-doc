@@ -8,11 +8,11 @@ Navigation:
 
 ## Introduction
 
-The JSAPI is intrinsic to the HidashHi real time communication and needs to be integrated into an application website to make use of the HidashHi resources.
+The Javascript API is intrinsic to the HidashHi real time communication and needs to be integrated into an application website to make use of the HidashHi resources.
 The applications may send and receive text messages, may place and receive calls, and should mitigate the user’s interaction with the online environment.
-The JSAPI is served as a Javascript file from the HidashHi CDN. It should be available from http://cdn.hidashhi.com/js/api.js .
+The Javascript API is served as a Javascript file from the HidashHi CDN. It should be available from http://cdn.hidashhi.com/js/api/1/hi.js .
 
-An in-detail view of the JSAPI objects, methods and events can be found documented in the appropriate files.
+An in-detail view of the API objects, methods and events can be found documented in the appropriate files.
 
 ## Authentication ##
 
@@ -20,18 +20,18 @@ An in-detail view of the JSAPI objects, methods and events can be found document
 
 ## Available objects ##
 
-`JSAPI` - the API object itself, globally available;
+`$hi` - the global API object itself;
 
-`JSAPI.Client` - handles the connection to the servers and the eventing on the socket;
+`$hi.Client` - handles the connection to the servers and the eventing on the socket;
 
-`JSAPI.Call` - encapsulates information and functionality for a call which was placed or received by the API instance;
+`$hi.Call` - encapsulates information and functionality for a call which was placed or received by the API instance;
 
-`JSAPI.TextMessage` - encapsulates information and functionality for a text message that was sent or received by the API instance.
+`$hi.TextMessage` - encapsulates information and functionality for a text message that was sent or received by the API instance.
 
 ## Further information on objects  
 
-- [JSAPI.Call](call.md)
-- [JSAPI.TextMessage](text_message.md)
+- [$hi.Call](call.md)
+- [$hi.TextMessage](text_message.md)
 
 ## Available methods ##
 
