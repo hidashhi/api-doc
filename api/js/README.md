@@ -116,6 +116,25 @@ An in-detail view of the API objects, methods and events can be found documented
 #### Events
 //...
 
+**Example:** 
+<pre> 
+participant.on("state", function(state){
+  // React...
+});
+</pre>
+
+##### state
+Possible participant states:  
+
+* ready  
+* ringing  
+* accepted  
+* connecting  
+* connected  
+* stream:start  
+* stream:stop  
+* hangup  
+
 ### $hi.TextMessage(msg)
 //...
 
