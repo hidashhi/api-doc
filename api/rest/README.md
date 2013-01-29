@@ -6,56 +6,72 @@ Navigation:
 [Examples & Tutorials](../../samples_and_how_tos.md) | 
 [FAQ](../../faq.md)
 
+<a id="toc"></a>
+## ToC
+
+* [Introduction](#introduction)
+* [Authentication](#authentication)
+	* [OpenAuth 2 / Token Authentication](#oauth2)
+* [User Profile Handling](#desc_userProfile)
+* [User Account Handling](#desc_userAccount)
+* [Guest Tokens](#desc_guestToken)
+* [Endpoints](#endpoints)
+	* [POST /guestToken](#postGuestToken)  
+	* [GET /guestToken](#getGuestToken)  
+	* [DELETE /guestToken/:token_string](#deleteGuestToken)  
+
+	* [GET /user/account](#getUserAccount)  
+	* [PUT /user/account](#putUserAccount)  
+	* [POST /user/account/emails](#postUserAccountEmails)  
+	* [DELETE /user/account/emails/:email_address](#deleteUserAccountEmail)  
+
+	* [GET /user/profiles](#getUserProfiles)  
+	* [POST /user/profiles](#postUserProfiles)  
+	* [PUT /user/profile/:profileId](#putUserProfile)  
+	* [DELETE /user/profile/:profileId](#deleteUserProfile)  
+	* [POST /profile/image](#postProfileImage)  
+	* [GET /user/defaultProfile](#getUserDefaultProfile)  
+	* [PUT /user/defaultProfile/:profileId](#putUserDefaultProfile)  
+
+	* [GET /user/developerProfile](#getUserDeveloperProfile)  
+	* [PUT /user/developerProfile/:profileId]  (#putUserDeveloperProfile)  
+
+	* [GET /user/contact](#getUserContact)  
+	* [PUT /user/contact/:contactId](#putUserContact)  
+	* [DELETE /user/contact/:contactId](#deleteUserContact)  
+
+
+<a id="introduction"></a>
 ## Introduction
 
 The REST methodology uses JSON as the output format for the API. We may extend our support to other formats, but we recommend to use JSON at all times. All requests have to be made via HTTP.
 
+<a id="authentication"></a>
 ## Authentication
 
 The HidashHi REST API supports cookie session and [OAuth2](http://oauth.net/2/) token authentication.
 
-#### OAuth2
+<a id="oauth2"></a>
+### OpenAuth 2 / Token Authentication
 
 // TODO
 
-## User profiles handling
+<a id="desc_userProfile"></a>
+## User profile handling
 
 Each user's profile is like a persona representing the user within various environments. A user may choose to use the Hi-Hi services to interact with family and business environments, but keep them separated via different profiles. The criteria depend solely on the user's preferences.
 
+<a id="desc_userAccount"></a>
 ## User account handling
 
 A user's account consists of general, private user information, such as credentials, profiles, subscriptions and e-mail addresses. Note that when using the Hi-Hi resources to interact with others, a user's profile is used, not the account. An account can have multiple profiles, however a user can decide to authorize an application to only have access to certain profiles and not the user account itself. This way the user should be able to control his identity, as he can have an anonymous profile to use with certain applications. It is in the users best interest and the applications responsibility to respect the users privacy. Therefor profiles should not be able to be connected to one certain user and the user itself should not be exposed to others, only for the user himself.
 
+<a id="desc_guestToken"></a>
 ## Guest Tokens
 The guest tokens allow application developers to create an Hidashhi account for an application user in the background to interact with the HidashHi resources. There are no limitations to guest users, as they may behave like any other registered user. To retrieve a guest token, an E-Mail address is needed.
 The owner of that email address can at any time take over the guest token.
 
-## Endpoints
-<a id="endpoints"></a>
-
-[POST /guestToken](#postGuestToken)  
-[GET /guestToken](#getGuestToken)  
-[DELETE /guestToken/:token_string](#deleteGuestToken)  
-
-[GET /user/account](#getUserAccount)  
-[PUT /user/account](#putUserAccount)  
-[POST /user/account/emails](#postUserAccountEmails)  
-[DELETE /user/account/emails/:email_address](#deleteUserAccountEmail)  
-
-[GET /user/profiles](#getUserProfiles)  
-[POST /user/profiles](#postUserProfiles)  
-[PUT /user/profile/:profileId](#putUserProfile)  
-[DELETE /user/profile/:profileId](#deleteUserProfile)  
-[POST /profile/image](#postProfileImage)  
-[GET /user/defaultProfile](#getUserDefaultProfile)  
-[PUT /user/defaultProfile/:profileId](#putUserDefaultProfile)  
-
-[GET /user/developerProfile](#getUserDeveloperProfile)  
-[PUT /user/developerProfile/:profileId]  (#putUserDeveloperProfile)  
-
-[GET /user/contact](#getUserContact)  
-[PUT /user/contact/:contactId](#putUserContact)  
-[DELETE /user/contact/:contactId](#deleteUserContact)  
+## Endpoints  
 
 
 <a id="postGuestToken"></a>
@@ -85,7 +101,7 @@ user's email address
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -133,7 +149,7 @@ number of results. Default: 20
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -157,7 +173,7 @@ private key assigned to the application
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -183,7 +199,7 @@ Get account information.
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -204,7 +220,7 @@ user's new login password
 Same as `GET /user/account`, with the new information updated.
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -223,7 +239,7 @@ Same as `GET /user/account`, with the new information updated.
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -238,7 +254,7 @@ Same as `GET /user/account`, with the new information updated.
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -264,7 +280,7 @@ number of profiles to return. Defaults to 20
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -297,7 +313,7 @@ can be `public`, `contact`, `private`. Defaults to `contact`
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -328,7 +344,7 @@ can be `public`, `contact`, `private`
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -344,7 +360,7 @@ Deleting a profile
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -366,7 +382,7 @@ The image to upload
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -405,7 +421,7 @@ A user's default profile is a normal profile chosen by default for the main inte
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -420,7 +436,7 @@ A user's default profile is a normal profile chosen by default for the main inte
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -459,7 +475,7 @@ A user's developer profile is a normal profile used for application development,
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -474,7 +490,7 @@ A user's developer profile is a normal profile used for application development,
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -514,7 +530,7 @@ filter for the contacts to a user profile
     }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -538,7 +554,7 @@ filter for the contacts to a user profile
     { contact_object }
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)
 
 ----------
 
@@ -553,4 +569,4 @@ filter for the contacts to a user profile
 
 
 
-[Bring me back to the top](#endpoints)
+[Bring me back to the top](#toc)

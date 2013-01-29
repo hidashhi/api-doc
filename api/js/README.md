@@ -6,6 +6,37 @@ Navigation:
 [Examples & Tutorials](../../samples_and_how_tos.md) |
 [FAQ](../../faq.md)
 
+<a id="toc"></a>
+## ToC
+
+* [Introduction](#introduction)
+* [Authentication](#authentication)
+* [Additional Info](#additionalInfo)
+* [$hi](#$hi)
+	* $hi.connect(options)
+	* $hi.openCall(options)
+	* $hi.sendTextMessage(options)
+	* $hi.sendCustomMessage(options)
+	* Events
+	* $hi.Call(options)
+		* call.init()  
+		* call.accept()  
+		* call.reject()  
+		* call.ignore()  
+		* call.hold()  
+		* call.resume()
+		* call.hangup()
+		* Events
+	* [$hi.Participant(call, options)](#hiParticipant)
+		* participant.render()  
+		* participant.remove()  
+		* [Events](#hiParticipantEvents)
+	* $hi.TextMessage(msg)
+		* textMsg.edit(newContent)  
+		* textMsg.remove()  
+		* Events 
+
+<a id="introduction"></a>
 ## Introduction
 
 The Javascript API is intrinsic to the HidashHi real time communication and needs to be integrated into an application website to make use of the HidashHi resources.
@@ -14,36 +45,85 @@ The Javascript API is served as a Javascript file from the HidashHi CDN. It shou
 
 An in-detail view of the API objects, methods and events can be found documented in the appropriate files.
 
+<a id="authentication"></a>
 ## Authentication ##
 
 // TODO
 
-## Available objects ##
-
-`$hi` - the global API object itself;
-
-`$hi.Client` - handles the connection to the servers and the eventing on the socket;
-
-`$hi.Call` - encapsulates information and functionality for a call which was placed or received by the API instance;
-
-`$hi.TextMessage` - encapsulates information and functionality for a text message that was sent or received by the API instance.
-
+<a id="additionalInfo"></a>
 ## Further information on objects  
 
 - [$hi.Call](call.md)
 - [$hi.TextMessage](text_message.md)
 
-## Available methods ##
 
-`connect` - establishes a bidirectional socket connection to the HidashHi servers;
+## $hi
+//...
 
-`disconnect` - disconnects the client from the server;
+### $hi.connect(options)
+//...
 
-`sendTextMessage` - sends a text message to all the user profiles in `receiverProfileIds`;
+### $hi.openCall(options)
+//...
 
-`openCall` - starts a call with the list of participants;
+### $hi.sendTextMessage(options)
+//...
 
-`createStreamer` - creates a container for the user's webcam feed and stream;
+### $hi.sendCustomMessage(options)
+//...
 
-`createPlayer` - creates a container for the other participants' webcam streams.
+### Events
+//...
 
+### $hi.Call(options)
+//... 
+
+#### call.init()  
+//...
+
+#### call.accept()  
+//...
+
+#### call.reject()  
+//...
+
+#### call.ignore()  
+//...
+
+#### call.hold()  
+//...
+
+#### call.resume()
+//...
+
+#### call.hangup()
+//...
+
+#### Events
+//...
+
+<a id="hiParticipant"></a>
+### $hi.Participant(call, options)
+//...
+
+#### participant.render()  
+//...
+
+#### participant.remove()
+//...
+
+<a id="hiParticipantEvents"></a>
+#### Events
+//...
+
+### $hi.TextMessage(msg)
+//...
+
+#### textMsg.edit(newContent)  
+//...
+
+#### textMsg.remove()  
+//...
+
+#### Events 
+//...

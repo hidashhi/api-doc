@@ -11,7 +11,7 @@ Navigation:
 ## Introduction
 
 
-The JavaScript API allows developers to integrate video conferencing within their applications.
+The JavaScript API allows developers to integrate video communications within their own applications.
 
 **NOTE:** The following sections assume that you successfully configured your application to work with the JavaScript API and the user was successfully connected.
 
@@ -25,9 +25,9 @@ You can initiate a call by calling the `$hi.openCall` method:
 
 	$hi.openCall = function(options) { /* ... */ }
 
-This method sends a `call.init` message to the messaging server and returns a `$hi.Call` object that represents the call locally. This object will be updated automatically by the JavaScript API to reflect the global state of that call.
+This method sends a `call.init` message to the messaging server and returns a `$hi.Call` object that represents the call locally. This object will be updated by the JavaScript API to reflect the state of that call.
 
-As for text messages, a call require the ids of the user profiles that participate in that call. The `options` argument requires the following attributes:
+As for text messages, a call requires the ids of the user profiles that participate in that call. The `options` argument requires the following attributes:
 
 - `from`
 - `to`
