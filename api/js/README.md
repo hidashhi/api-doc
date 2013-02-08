@@ -12,7 +12,7 @@ Navigation:
 * [Introduction](#introduction)
 * [Authentication](#authentication)
 * [Events](#events)
-* [$hi](#$hi)
+* [$hi](#hi)
 	* [$hi.connect(options)](#hiConnect)
 	* [$hi.openCall(options)](#hiOpenCall)
 	* [$hi.sendTextMessage(options)](#hisendTextMessage)
@@ -35,7 +35,7 @@ Navigation:
 	* [textMsg.edit(newContent)](#hiTextMessage)
 	* [textMsg.remove()](#hiTextMessageRemove)
 	* [Events](#hiTextMessageEvents)
-<br /><br />
+
 <a id="introduction"></a>
 ## Introduction
 
@@ -44,7 +44,7 @@ Applications may send and receive text messages, place and receive calls, and us
 The Javascript API is served as a Javascript file from the HidashHi CDN. It should be available from http://cdn.hidashhi.com/js/api/1/hi.js (or http://cdn.beta.hidashhi.com/js/api/1/hi.js).
 
 For usage examples, please have a look at [our API examples on Github](https://github.com/hidashhi/api-examples).
-<br /><br />
+
 
 <a id="authentication"></a>
 ## Authentication ##
@@ -59,8 +59,8 @@ require_once('auth.php');
 <pre>
 var $hi_token = "< php $_SESSION['token']; ?>";
 </pre>
-
-<br />
+<a id="hi"></a>
+<a id="hiConnect"></a>
 ### $hi.connect(options)
 If the user is not logged-in he will be redirected to the Hidashhi login page, which wil in turn redirect back to the URL of your appiication. When the user is logged in a token will be requested which can be used to access the API. The token will be available in a PHP Session '$_SESSION['token']'. Put the value of this session into a Javascript to pass it onto the Javascript API.
 
@@ -73,7 +73,6 @@ $hi.connect({
   }  
 })
 </pre>
-<br />
 
 
 <a id="hiOpenCall"></a>
