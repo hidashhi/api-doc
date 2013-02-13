@@ -47,22 +47,34 @@ For usage examples, please have a look at [our API examples on Github](https://g
 
 
 <a id="authentication"></a>
-## Authentication ##
-The authentication is done via a token. When you'd like to authenticate a user you'll need to include the oAuth authorisation script. That script will load you config file in which your appId and apiKey is listed. The auth.php script will load the configuration and checks if the user is logged in. 
+## Authentication  
+To use the API in the name of the user, you need an access token. To get an access token, a user has to be actually logged in to his Hidashhi account, to allow your application access.
+This process is described in the [OpenAuth2 protocol](http://oauth.net/2/).
 
-**Example; included auth part (PHP)** 
-<pre>
-require_once('auth.php');
-</pre>
+### Request a token
+This is the flow for a token request:
 
-**Example; Get token value (Javascript)** 
-<pre>
-var $hi_token = "< php $_SESSION['token']; ?>";
-</pre>
+1. **Your App** generates a local random string (state) to identify the request.
+2. **Your App** redirects the user to the Hidashhi oAuth2 dialog at `http://auth.hidashhi.com/oauth/dialog/?appId=YOUR_APP_ID&redirect_uri=YOUR_APP_URL&state=YOUR_GENERATED_STATE`
+3. **The User allows** access to his account/profile by your application.
+4. **The API** redirects the user to `YOUR_APP_URL?code=ACCESS_CODE&state=YOUR_GENERATED_STATE`
+5. **Your App** checks if the given state is the one it generated earlier for the request.
+6. **Your App** exchanges the delivered ACCESS_CODE for an access token via the REST API request to `http://rest.hidashhi.com/getTokenForCode/?appId=YOUR_APP_ID&code=ACCESS_CODE`
+
+**An example** of how to request an access token can be found in the [API examples at github](https://github.com/hidashhi/api-examples).
+
 <a id="hi"></a>
+## $hi
+Globally accessable API object.
+
 <a id="hiConnect"></a>
 ### $hi.connect(options)
-If the user is not logged-in he will be redirected to the Hidashhi login page, which wil in turn redirect back to the URL of your appiication. When the user is logged in a token will be requested which can be used to access the API. The token will be available in a PHP Session '$_SESSION['token']'. Put the value of this session into a Javascript to pass it onto the Javascript API.
+Initiates a connection to the Javascript API server, providing a bidirectional connection.
+
+Options:
+- `token` - To authenticate the user
+- `callback` - If the connection is established, the given function is called.
+
 
 **Example: connecting to the API with the token** 
 <pre>
