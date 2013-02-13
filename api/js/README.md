@@ -13,7 +13,7 @@ Navigation:
 * [Authentication](#authentication)
 * [Events](#events)
 * [$hi](#hi)
-	* [$hi.connect(options)](#hiConnect)
+	* [$hi.connect(options)](#hiconnect)
 	* [$hi.openCall(options)](#hiOpenCall)
 	* [$hi.sendTextMessage(options)](#hisendTextMessage)
 	* [$hi.sendCustomMessage(options)](#hisendCustomMessage)
@@ -67,7 +67,7 @@ This is the flow for a token request:
 ## $hi
 Globally accessable API object.
 
-<a id="hiConnect"></a>
+<a id="hiconnect"></a>
 ### $hi.connect(options)
 Initiates a connection to the Javascript API server, providing a bidirectional connection.
 
