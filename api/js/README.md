@@ -17,7 +17,7 @@ Navigation:
 	* [$hi.openCall(options)](#hiOpenCall)
 	* [$hi.sendTextMessage(options)](#hisendTextMessage)
 	* [$hi.sendCustomMessage(options)](#hisendCustomMessage)
-	* [Events](#hiEvents)
+	* [Event: connected](#hiEventConnected)
 * [$hi.Call(options)](#hiCall)
 	* [call.init()](#hiCallInit)  
 	* [call.accept()](#hiCallAccept)   
@@ -116,6 +116,7 @@ A call [Participant](#hiParticipant) is a user profile that is either the initia
 [back to top](#toc)
 <br />
 <br />
+
 <a id="hisendTextMessage"></a>
 ### $hi.sendTextMessage(options)
 Using sendTextMessage you can send messages to a profileId, or muliple profileId's (array)
@@ -123,6 +124,11 @@ Using sendTextMessage you can send messages to a profileId, or muliple profileId
 $hi.sendTextMessage(YOUR_PROFILE_ID, TO_PROFILE_ID, false, "Your text message")
 </pre>
 <br />
+
+[back to top](#toc)
+<br />
+<br />
+
 <a id="hisendCustomMessage"></a>
 ### $hi.sendCustomMessage(options) !not implemented
 
@@ -131,6 +137,18 @@ CustomMessages allow you to send anything. Where sendTextMessages always convert
 Any application that wants to exchange, send or receive data can use these customMessages.
 This feature is not yet available in the API.
 
+[back to top](#toc)
+<br />
+<br />
+
+<a id="hiEventConnected"></a>
+### Event: connected
+`function(connectionId, userId, profiles, credentials){}`  
+
+Emitted when the API client successfully connected to the server and is ready to send and receive messages/calls.
+
+[back to top](#toc)
+<br />
 <br />
 
 <a id="hiCall"></a>
