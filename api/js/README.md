@@ -123,7 +123,7 @@ A call [Participant](#hiParticipant) is a user profile that is either the initia
 ### $hi.sendTextMessage(options)
 Using sendTextMessage you can send messages to a profileId, or multiple profileId's (array)
 <pre>
-$hi.sendTextMessage(options YOUR_PROFILE_ID, TO_PROFILE_ID, false, "Your text message")
+$hi.sendTextMessage(options)
 </pre>
 
 **Options:**
