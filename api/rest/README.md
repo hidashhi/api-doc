@@ -59,12 +59,12 @@ The HidashHi REST API supports cookie session and [OAuth2](http://oauth.net/2/) 
 <a id="desc_userProfile"></a>
 ## User profile handling
 
-Each user's profile is like a persona representing the user within various environments. A user may choose to use the Hi-Hi services to interact with family and business environments, but keep them separated via different profiles. The criteria depend solely on the user's preferences.
+Each user's profile is like a persona representing the user within various environments. A user may choose to use the Hidashhi services to interact with family and business environments, but keep them separated via different profiles. The criteria depend solely on the user's preferences.
 
 <a id="desc_userAccount"></a>
 ## User account handling
 
-A user's account consists of general, private user information, such as credentials, profiles, subscriptions and e-mail addresses. Note that when using the Hi-Hi resources to interact with others, a user's profile is used, not the account. An account can have multiple profiles, however a user can decide to authorize an application to only have access to certain profiles and not the user account itself. This way the user should be able to control his identity, as he can have an anonymous profile to use with certain applications. It is in the users best interest and the applications responsibility to respect the users privacy. Therefor profiles should not be able to be connected to one certain user and the user itself should not be exposed to others, only for the user himself.
+A user's account consists of general, private user information, such as credentials, profiles, subscriptions and e-mail addresses. Note that when using the Hidashhi resources to interact with others, a user's profile is used, not the account. An account can have multiple profiles, however a user can decide to authorize an application to only have access to certain profiles and not the user account itself. This way the user should be able to control his identity, as he can have an anonymous profile to use with certain applications. It is in the users best interest and the applications responsibility to respect the users privacy. Therefor profiles should not be able to be connected to one certain user and the user object (account information) itself should not be exposed to others, only to the user itself.
 
 <a id="desc_guestToken"></a>
 ## Guest Tokens
@@ -101,7 +101,7 @@ user's email address
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -149,7 +149,7 @@ number of results. Default: 20
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -173,7 +173,7 @@ private key assigned to the application
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -199,7 +199,7 @@ Get account information.
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -220,7 +220,7 @@ user's new login password
 Same as `GET /user/account`, with the new information updated.
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -239,7 +239,7 @@ Same as `GET /user/account`, with the new information updated.
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -254,7 +254,7 @@ Same as `GET /user/account`, with the new information updated.
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -280,7 +280,7 @@ number of profiles to return. Defaults to 20
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -313,7 +313,7 @@ can be `public`, `contact`, `private`. Defaults to `contact`
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -344,7 +344,7 @@ can be `public`, `contact`, `private`
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -360,7 +360,7 @@ Deleting a profile
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -382,7 +382,7 @@ The image to upload
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -421,7 +421,7 @@ A user's default profile is a normal profile chosen by default for the main inte
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -436,7 +436,7 @@ A user's default profile is a normal profile chosen by default for the main inte
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -475,7 +475,7 @@ A user's developer profile is a normal profile used for application development,
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -490,7 +490,7 @@ A user's developer profile is a normal profile used for application development,
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -530,7 +530,7 @@ filter for the contacts to a user profile
     }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -554,7 +554,7 @@ filter for the contacts to a user profile
     { contact_object }
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
 
 ----------
 
@@ -569,4 +569,4 @@ filter for the contacts to a user profile
 
 
 
-[Bring me back to the top](#toc)
+[back to top](#toc)
