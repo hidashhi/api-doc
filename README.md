@@ -1,1 +1,1 @@
-# GOTO [overview.md](overview.md)
+# GOTO overview.md

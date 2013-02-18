@@ -35,6 +35,9 @@ Navigation:
 	* [textMsg.edit(newContent)](#hiTextMessage)
 	* [textMsg.remove()](#hiTextMessageRemove)
 	* [Events](#hiTextMessageEvents)
+* [$hi.Audio (Extension)](#hiAudio)
+	* [$hi.Audio.init(settings)](#hiAudioInit)
+
 
 <a id="introduction"></a>
 ## Introduction
@@ -95,7 +98,6 @@ A call requires the ids of the user profiles that participate in that call. The 
 
 - `from`
 - `to`
-- `chainId`
 - `immediate`
 - `settings`
 
@@ -121,8 +123,14 @@ A call [Participant](#hiParticipant) is a user profile that is either the initia
 ### $hi.sendTextMessage(options)
 Using sendTextMessage you can send messages to a profileId, or muliple profileId's (array)
 <pre>
-$hi.sendTextMessage(YOUR_PROFILE_ID, TO_PROFILE_ID, false, "Your text message")
+$hi.sendTextMessage(options YOUR_PROFILE_ID, TO_PROFILE_ID, false, "Your text message")
 </pre>
+
+**Options:**
+- `from`: YOUR_PROFILE_ID
+- `to`: TO_PROFILE_ID or [TO_PROFILE_ID, …]
+- `text`: STRING with content of your text message
+
 <br />
 
 [back to top](#toc)
@@ -130,7 +138,7 @@ $hi.sendTextMessage(YOUR_PROFILE_ID, TO_PROFILE_ID, false, "Your text message")
 <br />
 
 <a id="hisendCustomMessage"></a>
-### $hi.sendCustomMessage(options) !not implemented
+### $hi.sendCustomMessage(options) 
 
 CustomMessages allow you to send anything. Where sendTextMessages always converts the message to text, with sendCustomMessage you can send objects, data, anything really. This can be used, for example, in games to broadcast the position of a player without having to run your own socketserver(s). 
 
@@ -223,7 +231,10 @@ When a call is accepted you can render the participant streams to the screen usi
   }
 })
 </pre>
-<br>
+
+[back to top](#toc)
+<br />
+<br />
 
 <a id="hiParticipantRender"></a>
 ### participant.render()
@@ -236,12 +247,20 @@ participant.render({
 })
 </pre>
 
+[back to top](#toc)
+<br />
+<br />
+
 <a id="hiParticipantRemove"></a>
 ### participant.remove()
 Remove a participant from a call (for multiparty calling, this is not yet available in the API)
 <pre>
 participants.remove(call.participants)
 </pre>
+
+[back to top](#toc)
+<br />
+<br />
 
 <a id="hiParticipantEvents"></a>
 ### Event: state
@@ -256,10 +275,18 @@ Possible participant states:
 * stream:stop  
 * hangup  
 
+[back to top](#toc)
+<br />
+<br />
+
 <a id="hiTextMessage"></a>
 ## $hi.TextMessage(msg)
 Using the JavaScript API you can send and receive text messages
 between users, edit existing text messages or delete them from a conversation with ease. The platform provides a secure and very flexible set of primitives that allows developers to create various kinds of applications like instant messaging or chat rooms, with applicability in any field you can think of.
+
+[back to top](#toc)
+<br />
+<br />
 
 <a id="hiTextMessageEdit"></a>
 ### textMsg.edit(newContent)  
@@ -272,3 +299,31 @@ between users, edit existing text messages or delete them from a conversation wi
 <a id="hiTextEvents"></a>
 ### Events 
 //...
+
+<a id="hiAudio"></a>
+## $hi.Audio (Extension)
+The `Audio` extension provides a configurable sound theme, which automatically hooks up to $hi events. It plays sounds for an incoming call, dialing, hangup or incoming messages for example.
+
+The Audio singleton is provided when including the full production API `hi.js`. If not needed, one can include the base API `hi.base.js` only. It can be separately loaded, in manual addition to the base API from `hi.audio.js`.
+
+[back to top](#toc)
+<br />
+<br />
+
+<a id="hiAudioInit"></a>
+### $hi.Audio.init(settings)  
+In the settings object you can manipulate the sound theme. It will be merged with the default settings on `$hi.Audio.settings`, which can be manipulated directly as well. The `settings.theme` member holds configuration objects for the different sounds in the theme.
+
+Sounds in default theme:
+* ringing
+* hangup
+* connecting 
+* rejected
+* text_incoming
+* text_outgoing  
+
+[back to top](#toc)
+<br />
+<br />
+
+

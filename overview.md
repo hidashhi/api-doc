@@ -7,7 +7,7 @@ The API can be used to build applications, tools or services around the HidashHi
 The HidashHi API consists of a Javascript and a RESTful API. (A proprietary TCP/IP protocol will follow.)
 
 - [REST API](api/rest/README.md)
-- [JS API](api/js/README.md)
+- [Javascript API ($hi)](api/js/README.md)
 
 Other sections:  
 
