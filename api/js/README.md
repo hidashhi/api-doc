@@ -48,6 +48,11 @@ The Javascript API is served as a Javascript file from the HidashHi CDN. It shou
 
 For usage examples, please have a look at [our API examples on Github](https://github.com/hidashhi/api-examples).
 
+The Javascript API uses the [Socket.io](http://www.socket.io) Client as a transport layer
+
+[back to top](#toc)
+<br />
+<br />
 
 <a id="authentication"></a>
 ## Authentication  
@@ -66,6 +71,27 @@ This is the flow for a token request:
 
 **An example** of how to request an access token can be found in the [API examples at github](https://github.com/hidashhi/api-examples).
 
+[back to top](#toc)
+<br />
+<br />
+
+
+<a id="events"></a>
+## Events
+$hi makes use of the io.EventEmitter.
+
+Listening to an event is as easy as:  
+<pre>
+call.on('state', function(state){
+  // …
+}
+</pre>
+
+[back to top](#toc)
+<br />
+<br />
+
+
 <a id="hi"></a>
 ## $hi
 Globally accessable API object.
@@ -74,9 +100,10 @@ Globally accessable API object.
 ### $hi.connect(options)
 Initiates a connection to the Javascript API server, providing a bidirectional connection.
 
-Options:
-- `token` - To authenticate the user
-- `callback` - If the connection is established, the given function is called.
+Options:  
+
+* `token` - To authenticate the user  
+* `callback` - If the connection is established, the given function is called.  
 
 
 **Example: connecting to the API with the token** 
@@ -88,6 +115,10 @@ $hi.connect({
   }  
 });
 </pre>
+
+[back to top](#toc)
+<br />
+<br />
 
 
 <a id="hiOpenCall"></a>
