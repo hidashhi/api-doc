@@ -134,8 +134,6 @@ A call requires the ids of the user profiles that participate in that call. The 
 
 The `from` argument represents the profile id of the call initiator. The `to` argument is an array of profile ids representing the receivers of that call. If there is only one receiver, then you can specify it directly instead of wrapping it in an array. 
 
-As a text message, a call will also be part of a chain. If a chain id is not provided when the call is initiated, then the id of the `call.init` message will be used as the chain id. It is also possible for a chain to contain more than a call, but only the last call can be active.
-
 The `immediate` attribute specifies whether the call should be initiated directly after creation. If _false_, the call has to be initiated manually after creation by using [call.init()](#hiCallInit).
 
 The `settings` argument allows you to specify various call settings:
