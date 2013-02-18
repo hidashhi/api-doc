@@ -83,10 +83,10 @@ Options:
 <pre>
 $hi.connect({
   token: YOUR_TOKEN,
-  callback: function(connectionId, userId, profiles, credentials){    
-    // your are now connected
+  callback: function(connectionId, userId, profiles, credentials){  
+    // your are now connected  
   }  
-})
+});
 </pre>
 
 
@@ -121,7 +121,7 @@ A call [Participant](#hiParticipant) is a user profile that is either the initia
 
 <a id="hisendTextMessage"></a>
 ### $hi.sendTextMessage(options)
-Using sendTextMessage you can send messages to a profileId, or muliple profileId's (array)
+Using sendTextMessage you can send messages to a profileId, or multiple profileId's (array)
 <pre>
 $hi.sendTextMessage(options YOUR_PROFILE_ID, TO_PROFILE_ID, false, "Your text message")
 </pre>
@@ -140,10 +140,13 @@ $hi.sendTextMessage(options YOUR_PROFILE_ID, TO_PROFILE_ID, false, "Your text me
 <a id="hisendCustomMessage"></a>
 ### $hi.sendCustomMessage(options) 
 
-CustomMessages allow you to send anything. Where sendTextMessages always converts the message to text, with sendCustomMessage you can send objects, data, anything really. This can be used, for example, in games to broadcast the position of a player without having to run your own socketserver(s). 
+CustomMessages allow you to send anything. Where sendTextMessages always converts the message to text, with sendCustomMessage you can send objects, data, anything really. This can be used, for example, in games to broadcast the position of a player without having to run your own socket server(s). 
 
-Any application that wants to exchange, send or receive data can use these customMessages.
-This feature is not yet available in the API.
+The content length for a custom message is currently limited to 255 bytes.
+
+Any application that wants to exchange, send or receive data can use these customMessages.  
+
+**This feature is only available for premium API users.**
 
 [back to top](#toc)
 <br />
@@ -165,7 +168,7 @@ Emitted when the API client successfully connected to the server and is ready to
 
 <a id="hiCallInit"></a>
 ### call.init()  
-If 'immediate' is set to false this has to be called seperatly. If 'immediate' is set to true then the call is placed directlty when the call request is fired. By using "false" calls could be put in an object, to actually start that call you need use call.init()
+If `immediate` is set to `false` this has to be called separately. If `immediate` is set to `true` then the call is placed directly when the call request is fired. By using `false` calls could be cached, to actually start that call you need use `call.init()`.
 
 <a id="hiCallAccept"></a>
 ### call.accept()  
@@ -189,7 +192,7 @@ Resume a call that has been put on hold before
 
 <a id="hiCallHangup"></a>
 ### call.hangup()
-Hangup a current call. Or, as iniator, you can hangup a call that has not been picked up yet by the recipient
+Hangup a current call. Or, as initiator, you can hangup a call that has not been picked up yet by the recipient
 
 <br><br>
 [back to top](#toc)
@@ -197,21 +200,20 @@ Hangup a current call. Or, as iniator, you can hangup a call that has not been p
 <a id="hiParticipant"></a>
 ## $hi.Participant(call, options)
 When a call is accepted you can render the participant streams to the screen using the following code:
-<pre>call.participants.forEach(function (index, participant) {
-
-  // Find out which of the participant is you
-  if (participant.isMe) {
-
+<pre>
+call.participants.forEach(function (index, participant) {  
+  // Find out which of the participant is you  
+  if (participant.isMe) {  
+  
     // Your camera will be rendered in an element with this id
     var containerId = "YOUR_CAMERA_HOLDER"
-
+  
     // Render the Camera
     call.me.render({containerId: containerId})
 
   } else {
-
-    // The element in which the participnat is rendered
-    // Typically you create this Id using both the call.id and participant.id
+    // The element in which the participant is rendered
+    // Typically you create this Id using both the call.id and	 participant.id
     // This process ensures the element is unique, and can be accessed if required
     var containerId = "hi_call_current_" + call.id + '_player_' + participant.id
 
@@ -219,7 +221,7 @@ When a call is accepted you can render the participant streams to the screen usi
     participant.render({containerId: containerId})
 
     // Listen for state changes
-    $hi._flashContainers['' + call.id + '' + containerId + ''].on('state', function (state) {
+    participant.on('state', function (state) {
     
       if (state == 'connecting') {
         // the participant is connecting
@@ -227,9 +229,9 @@ When a call is accepted you can render the participant streams to the screen usi
       if (state == 'playing') {
         // the participant stream is playing
       }
-    })
+    });
   }
-})
+});
 </pre>
 
 [back to top](#toc)
@@ -239,7 +241,7 @@ When a call is accepted you can render the participant streams to the screen usi
 <a id="hiParticipantRender"></a>
 ### participant.render()
 <pre>
-// Render the participant Streaming Player
+// Render the participant Streaming Player to the DOM.
 participant.render({
   containerId: containerId,
   width: 320,
@@ -253,7 +255,7 @@ participant.render({
 
 <a id="hiParticipantRemove"></a>
 ### participant.remove()
-Remove a participant from a call (for multiparty calling, this is not yet available in the API)
+Remove a participants Streaming Player from the DOM.
 <pre>
 participants.remove(call.participants)
 </pre>
