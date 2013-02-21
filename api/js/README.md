@@ -367,6 +367,8 @@ welcome: {
 },
 </pre>
 
+The `url` is by default prepended with the domain for the HidashHi CDN. If you want to use sound files from your own source, just set `$hi.Audio.external = true` and it will not be prepended anymore.
+
 The `trigger` function just hooks up to events on `$hi` and uses the given `fnPlay` and `fnStop` functions to determine when the sound should start playing and when it should be stopped again (in the case of a looped sound). The default `trigger` for the `welcome` sound looks like this:  
 <pre>
 function(fnPlay, fnStop){
