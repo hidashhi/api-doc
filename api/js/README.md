@@ -345,13 +345,40 @@ The Audio singleton is provided when including the full production API `hi.js`. 
 ### $hi.Audio.init(settings)  
 In the settings object you can manipulate the sound theme. It will be merged with the default settings on `$hi.Audio.settings`, which can be manipulated directly as well. The `settings.theme` member holds configuration objects for the different sounds in the theme.
 
-Sounds in default theme:
+Sounds in default theme:  
+
+* welcome
 * ringing
 * hangup
 * connecting 
 * rejected
 * text_incoming
 * text_outgoing  
+
+A theme settings for a sound in `Audio.settings` basically looks like this:  
+<pre>
+welcome: {
+  url: '/sounds/welcome.mp3',
+  trigger: function(fnPlay, fnStop){
+    // …  
+  },
+  loop: false,
+  active: true
+},
+</pre>
+
+The `trigger` function just hooks up to events on `$hi` and uses the given `fnPlay` and `fnStop` functions to determine when the sound should start playing and when it should be stopped again (in the case of a looped sound). The default `trigger` for the `welcome` sound looks like this:  
+<pre>
+function(fnPlay, fnStop){
+  // Play sound when we get connected to the API server
+  $hi.on('connected', function(){
+    // Start playing the sound
+    fnPlay();
+  });
+}
+</pre>
+
+The theme can be adjusted by manipulating `$hi.Audio.settings` _before_ calling `init`, or be extended/merged by specifying a theme in the `settings` given to `$hi.Audio.init(settings)`.
 
 [back to top](#toc)
 <br />
