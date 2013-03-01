@@ -1,10 +1,6 @@
 # HidashHi REST API Documentation
 
-Navigation:
-[Overview](../../overview.md) |
-[JS API](../js/README.md) |
-[Examples & Tutorials](../../samples_and_how_tos.md) | 
-[FAQ](../../faq.md)
+Navigation: [Overview](../../overview.md) | [JS API](../js/README.md) | [Examples & Tutorials](../../samples_and_how_tos.md) | [FAQ](../../faq.md)
 
 <a id="toc"></a>
 ## ToC
