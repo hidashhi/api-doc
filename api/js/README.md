@@ -227,25 +227,19 @@ When a call is accepted you can render the participant streams to the screen usi
 call.participants.forEach(function (index, participant) {  
   // Find out which of the participant is you  
   if (participant.isMe) {
-    
     // Your camera will be rendered in an element with this id
     var containerId = "YOUR_CAMERA_HOLDER"
-  
     // Render the Camera
     call.me.render({containerId: containerId})
-
   } else {
     // The element in which the participant is rendered
     // Typically you create this Id using both the call.id and	 participant.id
     // This process ensures the element is unique, and can be accessed if required
     var containerId = "hi_call_current_" + call.id + '_player_' + participant.id
-
     // Render the Streaming Player
     participant.render({containerId: containerId})
-
     // Listen for state changes
     participant.on('state', function (state) {
-    
       if (state == 'connecting') {
         // the participant is connecting
       }
