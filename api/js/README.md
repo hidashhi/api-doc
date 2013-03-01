@@ -103,14 +103,12 @@ Options:
 
 
 **Example: connecting to the API with the token** 
-<pre>
-$hi.connect({
+<pre>$hi.connect({
   token: YOUR_TOKEN,
-  callback: function(connectionId, userId, profiles, credentials){  
-    // your are now connected  
-  }  
-});
-</pre>
+  callback: function(connectionId, userId, profiles, credentials){
+    // your are now connected
+  }
+});</pre>
 
 [back to top](#toc)
 <br />
