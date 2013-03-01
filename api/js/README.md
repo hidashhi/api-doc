@@ -225,12 +225,16 @@ Hangup a current call. Or, as initiator, you can hangup a call that has not been
 When a call is accepted you can render the participant streams to the screen using the following code:
 <pre>
 call.participants.forEach(function (index, participant) {  
-  // Find out which of the participant is you  
+  // Find out which of the participant is you
+    
   if (participant.isMe) {
+  
     // Your camera will be rendered in an element with this id
     var containerId = "YOUR_CAMERA_HOLDER"
+    
     // Render the Camera
     call.me.render({containerId: containerId})
+    
   } else {
     // The element in which the participant is rendered
     // Typically you create this Id using both the call.id and	 participant.id
