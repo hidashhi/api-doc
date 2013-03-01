@@ -226,8 +226,8 @@ When a call is accepted you can render the participant streams to the screen usi
 <pre>
 call.participants.forEach(function (index, participant) {  
   // Find out which of the participant is you  
-  if (participant.isMe) {  
-  
+  if (participant.isMe) {
+    
     // Your camera will be rendered in an element with this id
     var containerId = "YOUR_CAMERA_HOLDER"
   
