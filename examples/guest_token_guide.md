@@ -1,11 +1,6 @@
 # Guest token guide
 
-Navigation:
-[Overview](../overview.md) |
-[REST API](../api/rest/README.md) |
-[JS API](../api/js/README.md) |
-[Examples & Tutorials](../samples_and_how_tos.md) |
-[FAQ](../faq.md)
+Navigation: [Overview](../overview.md) | [REST API](../api/rest/README.md) | [JS API](../api/js/README.md) | [Examples & Tutorials](../samples_and_how_tos.md) | [FAQ](../faq.md)
 
 ## Introduction
 This guide shows how guest tokens are managed and used.
