@@ -1,6 +1,6 @@
 # HidashHi JS API Documentation
 
-Navigation: [Overview](../../overview.md) | [REST API](../rest/README.md) | [Examples & Tutorials](../../samples_and_how_tos.md) | [FAQ](../../faq.md)
+Navigation: [Overview](../../overview.md) | [REST API](../../api/rest/README.md) | [Examples & Tutorials](../../samples_and_how_tos.md) | [FAQ](../../faq.md)
 
 <a id="toc"></a>
 ## ToC
@@ -223,7 +223,7 @@ Hangup a current call. Or, as initiator, you can hangup a call that has not been
 <a id="hiParticipant"></a>
 ## $hi.Participant(call, options)
 When a call is accepted you can render the participant streams to the screen using the following code:
-<pre>call.participants.forEach(function (index, participant) {  
+<pre>call.participants.forEach(function (index, participant) {
   if (participant.isMe) {
     var containerId = "CAMERAHOLDER"
     call.me.render({containerId: containerId})
