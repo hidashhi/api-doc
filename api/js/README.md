@@ -223,23 +223,17 @@ Hangup a current call. Or, as initiator, you can hangup a call that has not been
 <a id="hiParticipant"></a>
 ## $hi.Participant(call, options)
 When a call is accepted you can render the participant streams to the screen using the following code:
-<pre>
-call.participants.forEach(function (index, participant) {  
-
+<pre>call.participants.forEach(function (index, participant) {  
   if (participant.isMe) {
     var containerId = "CAMERAHOLDER"
     call.me.render({containerId: containerId})
   } else {
-
     var containerId = "hi_call_current_" + call.id + '_player_' + participant.id
-    participant.render({containerId: containerId})
-    
+    participant.render({containerId: containerId})    
     participant.on('state', function (state) {
       if (state == 'connecting') {
-        // the participant is connecting
       }
       if (state == 'playing') {
-        // the participant stream is playing
       }
     });
   }
