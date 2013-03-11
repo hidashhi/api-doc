@@ -1,6 +1,6 @@
 # Examples & Tutorials
 
-Navigation: [Overview](overview.md) | [REST API](api/rest/README.md) | [JS API](api/js/README.md) | [FAQ](faq.md)
+Navigation: [Overview](overview.md) | [REST API](rest.md) | [JS API](js.md) | [FAQ](faq.md)
 
 Usage Examples:  
 
