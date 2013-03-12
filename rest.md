@@ -32,8 +32,9 @@ Navigation: [Overview](overview.md) | [JS API](js.md) | [Examples & Tutorials](s
 	* [GET /user/developerProfile](#getUserDeveloperProfile)  
 	* [PUT /user/developerProfile/:profileId]  (#putUserDeveloperProfile)  
 
-	* [GET /user/contact](#getUserContact)  
-	* [PUT /user/contact/:contactId](#putUserContact)  
+	* [GET /user/contacts](#getUserContact)  
+	* [POST /user/contact](#postUserContact)  
+    * [PUT /user/contact/:contactId](#putUserContact)  
 	* [DELETE /user/contact/:contactId](#deleteUserContact)  
 
 
@@ -491,7 +492,7 @@ A user's developer profile is a normal profile used for application development,
 ----------
 
 <a id="getUserContact"></a>
-### `GET /user/contact`
+### `GET /user/contacts`
 A user's contact is a connection between the user's profile and another user's profile.
 
 #### Parameters (query)
@@ -530,14 +531,37 @@ filter for the contacts to a user profile
 
 ----------
 
+<a id="postUserContact"></a>
+### `POST /user/contact/`
+Create a new contact for a user, connecting two profiles.
+
+#### Parameters (body)
+
+- `userProfileId`
+
+- `contactProfileId`
+
+- `firstname`
+
+- `lastname`
+
+- `email`
+
+#### Response (JSON)
+
+    { contact_object }
+
+
+[back to top](#toc)
+
+----------
+
 <a id="putUserContact"></a>
 ### `PUT /user/contact/:contactId`
 
 #### Parameters (body)
 
 - `contactId`
-
-- `groups`
 
 - `firstname`
 
