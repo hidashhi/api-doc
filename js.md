@@ -33,7 +33,8 @@ Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples & Tutorial
 	* [Events](#hiTextMessageEvents)
 * [$hi.Audio (Extension)](#hiAudio)
 	* [$hi.Audio.init(settings)](#hiAudioInit)
-
+* [$hi.getCapabilities](#hiGetCapabilities)
+	* [$hi.getCapabilities()](#hiGetCapabilities)
 
 <a id="introduction"></a>
 ## Introduction
@@ -362,5 +363,22 @@ The theme can be adjusted by manipulating `$hi.Audio.settings` _before_ calling 
 [back to top](#toc)
 <br />
 <br />
+
+
+<a id="hiGetCapabilities"></a>
+### $hi.getCapabilities() 
+To detect wether a participant has a Flash available, and a microphone $hi.getCapabilities() can be called on $hi.js to obtain these details.
+
+$hi.getCapabilities(function(err, caps){
+  if(caps.flash){
+    // Flash player is available, check for cameras
+    if(caps.flash.cameraList.length > 0) { 
+      // Camera(s) available 
+    } else {
+      // No Camera(s) found
+    }
+  }
+});
+
 
 
