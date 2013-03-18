@@ -41,7 +41,7 @@ Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples & Tutorial
 
 The Javascript API is intrinsic to the HidashHi real time communication and can be integrated into an application/website to make use of the HidashHi resources.
 Applications may send and receive text messages, place and receive calls, and use other features on the Hidashhi platform.
-The Javascript API is served as a Javascript file from the HidashHi CDN. It should be available from http://cdn.hidashhi.com/js/api/1/hi.js (or http://cdn.beta.hidashhi.com/js/api/1/hi.js).
+The Javascript API is served as a Javascript file from the HidashHi CDN. It is available in a minified version at http://cdn.hidashhi.com/js/api/1/hi.js (or http://cdn.beta.hidashhi.com/js/api/1/hi.js while were in beta).
 
 For usage examples, please have a look at [our API examples on Github](https://github.com/hidashhi/api-examples).
 
@@ -369,6 +369,7 @@ The theme can be adjusted by manipulating `$hi.Audio.settings` _before_ calling 
 ### $hi.getCapabilities() 
 To detect wether a participant has a Flash available, and a microphone $hi.getCapabilities() can be called on $hi.js to obtain these details.
 
+<pre>
 $hi.getCapabilities(function(err, caps){
   if(caps.flash){
     // Flash player is available, check for cameras
@@ -379,6 +380,10 @@ $hi.getCapabilities(function(err, caps){
     }
   }
 });
+</pre>
 
+[back to top](#toc)
+<br />
+<br />
 
 
