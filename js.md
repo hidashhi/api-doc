@@ -419,14 +419,14 @@ In case the end-user had to grant access to the media devices the following code
  // Detect Flashcontainer states, insert a small delay to allow the browser to render the SWF
 setTimeout(function(){
   participant._container.on('Camera.Muted', function(state){
-    $('#hi_camera_holder .msg').append('Camera denied detected<br />');
+    $('#hi_camera_holder .msg').append('Camera denied detected');
   })
   participant._container.on('Camera.Unmuted', function(state){
-    $('#hi_camera_holder .msg').append('Camera allowed detected<br />');
+    $('#hi_camera_holder .msg').append('Camera allowed detected');
   })
   // When your camera is connected, remove status message
   participant._container.on('connected', function(state){
-    $('#hi_camera_holder .msg').append('Stream connected<br />');
+    $('#hi_camera_holder .msg').append('Stream connected');
   })
 },100); 
 </pre>
