@@ -35,6 +35,7 @@ Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples & Tutorial
 	* [$hi.Audio.init(settings)](#hiAudioInit)
 * [$hi.getCapabilities](#hiGetCapabilities)
 	* [$hi.getCapabilities()](#hiGetCapabilities)
+* [Detect Media Privacy](#Detect_media)
 
 <a id="introduction"></a>
 ## Introduction
@@ -367,19 +368,67 @@ The theme can be adjusted by manipulating `$hi.Audio.settings` _before_ calling 
 
 <a id="hiGetCapabilities"></a>
 ### $hi.getCapabilities() 
-To detect wether a participant has a Flash available, and a microphone $hi.getCapabilities() can be called on $hi.js to obtain these details.
+To detect wether a participant has a Flash available, and a microphone $hi.getCapabilities() can be called on $hi.js to obtain these details. 
+
+Additionally a check can be performed wether the user already allowed access to the camera and microphone. To determine this the value of either cameraAllowed or microphoneAllowed can be checked. Although the Flashplayer treats both media devices as one (the access is either allowed, or not) the camera and the microphone each broadcast their availability for consistency.
+
+Insert the example below inside you call:accept block, inside the participant.isMe part. With the obtained info meaningull feedback can be given to the user, such as pointing out to the user that the camera or microphone is either not available, or is un-accesible due to the privicy settings.
+
+** Please be aware that checking for media is currently only available for Flash. For WebRTC a different mechanism will be in place, which will be introduced once we rollout WebRTC functionality.
 
 <pre>
 $hi.getCapabilities(function(err, caps){
   if(caps.flash){
+  
     // Flash player is available, check for cameras
-    if(caps.flash.cameraList.length > 0) { 
+    if(caps.flash.cameraList.length > 0) {     
       // Camera(s) available 
+      if(caps.flash.cameraAllowed){      
+        // Access to camera is allowed by user (remembered)      
+      } else {      
+        // Access to camera not yet allowed by user     
+      }      
     } else {
-      // No Camera(s) found
+      // No camera(s) found
     }
+    
+    // Check for microphones
+    if(caps.flash.microphone.length > 0) {     
+      // Microphone(s) available 
+      if(caps.flash.microphoneAllowed){      
+        // Access to microphone is allowed by user (remembered)      
+      } else {      
+        // Access to microphone not yet allowed by user     
+      }      
+    } else {
+      // No microphone(s) found
+    }    
   }
 });
+</pre>
+[back to top](#toc)
+<br />
+<br />
+
+
+<a id="Detect_media"></a>
+### Detect media allow/deny
+In case the end-user had to grant access to the media devices the following code supplies the click events to this setting. When a user either allows or denies media access either Camera.Muted (denied) or Camera.Unmuted (allowed) is emitted. 
+ 
+<pre>
+ // Detect Flashcontainer states, insert a small delay to allow the browser to render the SWF
+setTimeout(function(){
+  participant._container.on('Camera.Muted', function(state){
+    $('#hi_camera_holder .msg').append('Camera denied detected<br />');
+  })
+  participant._container.on('Camera.Unmuted', function(state){
+    $('#hi_camera_holder .msg').append('Camera allowed detected<br />');
+  })
+  // When your camera is connected, remove status message
+  participant._container.on('connected', function(state){
+    $('#hi_camera_holder .msg').append('Stream connected<br />');
+  })
+},100); 
 </pre>
 
 [back to top](#toc)
