@@ -197,23 +197,147 @@ If `immediate` is set to `false` this has to be called separately. If `immediate
 
 <a id="hiCallAccept"></a>
 ### call.accept()  
-Accepting an incoming call
+Accepting an incoming call. The call:acccpted event is emitted for all parties. The call can now be processed like this:
+
+<pre>
+$hi.on('call:accepted', function(call, acceptedParticipant) {
+
+  // Iterate through all participants
+  // The participants object holds all participants, including yourself
+  call.participants.forEach(function(index, participant){
+  
+    // Find out which of the participant is you (your browser)
+    if(participant.isMe){ 
+
+      // --------------------------
+      // CAMERA STREAM
+      // --------------------------
+    
+      // Camera will be rendered in an element with this id
+      var containerId = "hi_camera"
+
+      // Make sure the Camera container exists
+      if($('#hi_camera_holder #camera').find('#'+containerId+'').length == 0) {
+        $('#hi_camera_holder #camera').html('<div id="'+containerId+'"></div>').show()
+      }
+      
+      // Set status message to indicate your camera is initiating
+      $('#hi_camera_holder .msg').remove();
+      $('#hi_camera_holder').prepend('<div class="msg">Setting up your stream<br /></div>');
+      
+      // Render the Camera
+      call.me.render({
+        containerId: containerId,
+        width: 240,
+        height: 180,
+        cameraWidth: 320,
+        cameraHeight: 240,
+      })    
+      
+      // After rendering check the browser capabilities
+      $hi.getCapabilities(function(err, caps){     
+      
+        // see $hi.getCapabilities further down in this document
+      
+      }, { force: true });  
+
+    }else{
+
+      // --------------------------
+      // PARTICIPANT STREAM
+      // --------------------------
+      
+      // The Id of the element holding the Streaming Player
+      var containerId = "callwindow_" + call.id + '_player_' + participant.id
+
+      // Render the Streaming Player
+      participant.render({
+        containerId: containerId,
+        width: 320,
+        height: 240
+      })
+    }
+  })
+}) 
+</pre>
 
 <a id="hiCallReject"></a>
 ### call.reject()  
-Rejecting an incoming call
+Rejecting an incoming call. This means that a the receiving party actively rejected the call prior to taking it. Both caller and receiver will get the call:rejected event.
+
+<pre>
+callIncoming.on('call:rejected', function(call, participant) {
+
+  // call        : callObject, the call that was rejected
+  // participant : profile of the participant that rejected the call   
+})
+</pre>
 
 <a id="hiCallIgnore"></a>
 ### call.ignore()  
-Ignoring an incoming call
+Ignoring an incoming call. In this scenario the receiver does not want to take the call, and does not want the caller to know about this. When the receiver ignores the incoming call the call gets dropped on all instances. 
+
+End-users may have a running desktop application, and a mobile application. Ignoring the call will make sure the call stops ringing on all devices without notifying the caller.
+
+<pre>
+callIncoming.on('call:ignored', function(call) {
+
+  // call : callObject, the call that was ignored
+  // NOTE: not dispatched 
+})
+</pre>
 
 <a id="hiCallHold"></a>
 ### call.hold()  
-Put a current call on hold
+Put a current call on hold. The receiver decides to hold the call, the call:hold event is dispatched to all parties.
+
+<pre>
+// Holding the current, active call
+callCurrent.hold();
+
+// Listen for hold events on the current call
+callCurrent.on('call:hold', function(call, participant){
+
+  if(participant.isMe){
+  
+    // store the callObject that has been put on hold
+    callHoldingLine = call;
+  
+    // empty the current call
+    callCurrent = false;  
+    
+  } else{ 
+  
+    // "participant" has put the call on hold  
+  }
+})
+</pre>
 
 <a id="hiCallResume"></a>
 ### call.resume()
-Resume a call that has been put on hold before
+Resume a call that has been put on hold before.
+
+<pre>
+// Resume the call 
+callHoldingLine.resume();
+
+// Listen for hold events on the current call
+callCurrent.on('call:hold', function(call, participant){
+
+  if(participant.isMe){
+  
+    // store the callObject that has been put on hold
+    callHoldingLine = call;
+  
+    // empty the current call
+    callCurrent = false;  
+    
+  } else{ 
+  
+    // "participant" has put the call on hold  
+  }
+})
+</pre>
 
 <a id="hiCallHangup"></a>
 ### call.hangup()
@@ -434,5 +558,3 @@ setTimeout(function(){
 [back to top](#toc)
 <br />
 <br />
-
-
