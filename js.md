@@ -110,7 +110,8 @@ Options:
   callback: function(connectionId, userId, profiles, credentials){
     // your are now connected
   }
-});</pre>
+});
+</pre>
 
 [back to top](#toc)
 <br />
