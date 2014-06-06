@@ -117,7 +117,6 @@ Options:
 <br />
 
 
-<a id="hiOpenCall"></a>
 ### $hi.openCall(options)
 This method returns a [`$hi.Call`](#hiCall) object that represents the call locally. This object will be updated by the JavaScript API to reflect the state of that call.
 
