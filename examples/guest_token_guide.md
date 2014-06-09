@@ -9,7 +9,7 @@ This guide shows how guest tokens are managed and used. This guide assumes that 
 
 Assuming that a user with the e-mail address alice@hidashhi.com wants to use the application, a guest token can be created by sending a `POST` request:
 
-`POST http://rest.hidashhi.com/guestToken?apiKey=random_secret_api_key&email=alice@hidashhi.com`
+`POST <provided-HidashHi REST-server>/guestToken?apiKey=random_secret_api_key&email=alice@hidashhi.com`
 
 The response will be a JSON:
 
@@ -24,7 +24,7 @@ The response will be a JSON:
 
 Whenever the developer needs to refresh your list of tokens, they may call `GET` to the `/guestTokens` collection. The following example assumes that they have 2 guest tokens, for alice@hidashhi.com and bob@hidashhi.com.
 
-`GET http://rest.hidashhi.com/guestTokens?apiKey=random_secret_api_key`
+`GET <provided-HidashHi REST-server>/guestTokens?apiKey=random_secret_api_key`
 
 The response will be a JSON:
 
@@ -45,7 +45,7 @@ The response will be a JSON:
 
 The `skip` and `limit` parameters may be sent through the request url. They are useful when an application has more than 20 tokens. The `skip` parameter sets how many items to skip before displaying the results (defaults to 0), while the `limit` parameter sets how many items to return (defaults to 20). The following example uses these two parameters:
 
-`GET http://rest.hidashhi.com/guestTokens?apiKey=random_secret_api_key&skip=1&limit=1`
+`GET <provided-HidashHi REST-server>/guestTokens?apiKey=random_secret_api_key&skip=1&limit=1`
 
 The response will be a JSON:
 
@@ -64,7 +64,7 @@ The response will be a JSON:
 
 A token's information may be requested through the following call, assuming that the token is "token_code_for_alice":
 
-`GET http://rest.hidashhi.com/guestToken/token_code_for_alice?apiKey=random_secret_api_key`
+`GET <provided-HidashHi REST-server>/guestToken/token_code_for_alice?apiKey=random_secret_api_key`
 
 The response will be a JSON:
 
@@ -79,7 +79,7 @@ The response will be a JSON:
 
 This is not recommended for normal usage, since history and other information will be lost. A token will expire on its own anyway. If a particular token must no longer be used or a security issue occurs, the token may be removed by calling `DELETE` on its information endpoint:
 
-`DELETE http://rest.hidashhi.com/guestTokens/token_code_for_alice?apiKey=random_secret_api_key`
+`DELETE <provided-HidashHi REST-server>/guestTokens/token_code_for_alice?apiKey=random_secret_api_key`
 
 The response will be a JSON:
 
