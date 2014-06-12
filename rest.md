@@ -6,8 +6,6 @@ Navigation: [Overview](overview.md) | [JS API](js.md) | [Examples & Tutorials](s
 ## Table of Contents
 
 * [Introduction](#introduction)
-* [Authentication](#authentication)
-	* [OpenAuth 2 / Token Authentication](#oauth2)
 * [User Profile Handling](#desc_userProfile)
 * [User Account Handling](#desc_userAccount)
 * [Guest Tokens](#desc_guestToken)
@@ -41,17 +39,7 @@ Navigation: [Overview](overview.md) | [JS API](js.md) | [Examples & Tutorials](s
 <a id="introduction"></a>
 ## Introduction
 
-The REST methodology uses JSON as the output format for the API. We may extend our support to other formats, but we recommend to use JSON at all times. All requests have to be made via HTTP.
-
-<a id="authentication"></a>
-## Authentication
-
-The HidashHi REST API supports cookie session and [OAuth2](http://oauth.net/2/) token authentication.
-
-<a id="oauth2"></a>
-### OpenAuth 2 / Token Authentication
-
-// TODO
+The REST methodology uses JSON as the output format for the API. We may extend our support to other formats, but we recommend to use JSON at all times. All requests have to be made via HTTPS.
 
 <a id="desc_userProfile"></a>
 ## User profile handling
@@ -77,7 +65,7 @@ Create a guest token. If a token for the given E-Mail address already exists for
 
 **Example**
 <pre>
-POST http://rest.beta.hidashhi.com/guestToken?apiKey=YOUR_API_KEY&email=user@email.com
+POST https://rest-beta2.hidashhi.com/guestToken?apiKey=YOUR_API_KEY&email=user@email.com
 </pre>
 
 #### Parameters (url or post body)
