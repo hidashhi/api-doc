@@ -1,5 +1,5 @@
 /**
- * Hidashhi - Basic integration example.
+ * Hidashhi - Data channels example.
  *
  * For documentation and more examples see: http://github.com/hidashhi
  *
@@ -84,14 +84,12 @@ function initCall(accessToken, callCode) {
               height: 'auto',
               width: '100%'
             });
+            // Let the browser first init the video element.
+            setTimeout(function() {
+              initMouseDrawing(participant);
+            }, 1000);
           }.bind(this));
         });
-
-        room.on('participants:enter', function(data) { /* console.log("Participant entered room.", data); */ });
-        room.on('participants:leave', function(data) { /* console.log("Participant left room.", data); */ });
-        
-        // Init text-chat
-        initTextChat(room);
       });
 
     }, function(error) {
@@ -102,84 +100,46 @@ function initCall(accessToken, callCode) {
 }
 // End Join a call-room by call-code
 
-// Init receiving and sending text messages.
-function initTextChat(room) {
-  var container = $('#chat-message-container');
-
-  var lastTypingEventFired = 0;
-  var lastTypingEventInterval = 5000; /* 5 sec interval seems ok */
-  var lastTypingEventReceived = 0;
-
-  room.on('text:received', function(msg) {
-    // Incoming text message for room.
-     
-    if (msg.sender == $hi.profiles.getAt(0)._id) {
-      container.append($('<div class="row chat-message"><span class="label label-success top-left-block">'+msg.content.text+'</span></div>'));
-    } else {
-      container.append($('<div class="row text-right chat-message"><span class="label label-info top-right-block">'+msg.content.text+'</span></div>'));
+// Data channels mouse example
+function initMouseDrawing(participant) {
+  // Submit mouse pointer location
+  var mouse = {x: 0, y: 0};
+  document.addEventListener('mousemove', function(e){ 
+    mouse.x = e.clientX || e.pageX; 
+    mouse.y = e.clientY || e.pageY;
+  }, false);
+  var interval = setInterval(function() {
+    try {
+      // we're using the following structure. Though anything can be used.
+      // <type>|<anything>
+      // In this case <anything>: <mouse-x>x<mouse-y>
+      participant.sendDataChannelMessage("0|"+mouse.x+"x"+mouse.y);
+    } catch(e) {
+      console.log('Error occured.', e);
+      clearInterval(interval);
     }
+  }, 10);
 
-    // Scroll to current message/bottom
-    container.scrollTop(container[0].scrollHeight);
-
-    //Remove is-typing element
-    $('#chat-message-is-typing', container).remove();
-    lastTypingEventReceived = 0;
-  });
-
-  // Send text to call-room on submit of form.
-  $('#chat-send-message').submit(function(e) {
-    var input = $('#chat-message-input').val();
-    if (input && input != "") {
-      room.sendTextMessage({text: input});
-      $('#chat-message-input').val('');
-    }
-
-    lastTypingEventFired = 0;
-
-    e.preventDefault();
-    return false;
-  });
-
-  $('#chat-message-input').prop('disabled', false);
-
-  // Use custom messages for 'Is typing..' functionality.
-  $('#chat-message-input').keypress(function() {
-    if (Date.now()-lastTypingEventInterval > lastTypingEventFired) {
-      lastTypingEventFired = Date.now();
-      var message = {
-        to: room.profileIds,
-        from: $hi.profiles.getAt(0)._id,
-        content: 'is-typing-event'
-      }
-      $hi.sendCustomMessage(message);
-    }
-  });
-
-  // Listen for is-typing-event
-  $hi.on('custom:received', function(msg) {
-    if (msg.sender != $hi.profiles.getAt(0)._id && msg.content == 'is-typing-event') {
-      if (Date.now()-lastTypingEventInterval > lastTypingEventReceived) {
-        // new typing event
-        $('#chat-message-is-typing', container).remove();
-        container.append($('<div id="chat-message-is-typing" class="row text-right chat-message-is-typing"><span class="label label-info top-right-block">...</span></div>'));
-        // Scroll to current message/bottom
-        container.scrollTop(container[0].scrollHeight);
-
-      }
-      lastTypingEventReceived = Date.now();
-      setTimeout(function() {
-        if (Date.now()-lastTypingEventInterval > lastTypingEventReceived) {
-          // Not typing anymore, remove.
-          $('#chat-message-is-typing', container).remove();
+  // listen on remote mouse location
+  participant.on('data:message', function(message) {
+    var messageData = message.data.split('|', 2);
+    if (messageData.length >= 2) {
+      var type = messageData[0];
+      var value = messageData[1];
+      if (type == 0) {
+        var mouseData = value.split('x', 2);
+        if (mouseData.length == 2) {
+          $('#mousePointer').css({
+            left: mouseData[0]+"px",
+            top: mouseData[1]+"px"
+          });
         }
-      }, lastTypingEventInterval+1000);
+      }
     }
   });
-   
-  
 }
-// End Init receiving and sending text messages.
+// End Data channels mouse example
+
 
 // Some helper utils for example purpose.
 function generateCallCode() {
