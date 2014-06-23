@@ -18,5 +18,3 @@ Other sections:
 - [Older Examples & Tutorials](https://github.com/hidashhi/api-examples)
 
 Enclosed in this repository you will find the official HidashHi API documentation and a getting started example.
-
-**Warning:** the HidashHi API is in **beta testing phase**. The documentation does not reflect the final behavior of the API as it may be subject to change.
