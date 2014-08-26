@@ -10,6 +10,7 @@ Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples & Tutorial
 * [Events](#events)
 * [$hi](#hi)
     * [$hi.connect(options)](#hiconnect)
+    * [$hi.renderMe(containerId, cb, errCb, settings)](#hiRenderMe)
     * [$hi.openCall(options)](#hiOpenCall)
     * [$hi.joinRoom(options)](#hiJoinRoom)
     * [$hi.sendTextMessage(options)](#hisendTextMessage)
@@ -119,6 +120,28 @@ Options:
 <br />
 <br />
 
+<a name="hiRenderMe"></a>
+### $hi.renderMe(containerId, cb, errCb, settings)
+This method asks for the user permissions to use the local camera and/or microphone and renders the self-view in provided containerId.
+
+The `containerId` argument represents container in which to render the self-view.
+
+The `cb` callback is called when user allowed the permissions.
+
+The `errCb` callback is called when user didn't allow the permissions.
+
+The `settings` argument allows you to specify various settings:
+
+- `audio`: (Boolean) activate audio.
+- `video`: (Boolean) activate video.
+- `quality`: (String, optional) ['low', 'medium', 'high'] Optionally set a quality preset. By default 'high' is used and should be fine in most scenarios since WebRTC is adaptive on bandwidth.
+
+
+[back to top](#toc)
+<br />
+<br />
+
+
 <a name="hiOpenCall"></a>
 ### $hi.openCall(options)
 This method returns a [`$hi.Call`](#hiCall) object that represents the call locally. This object will be updated by the JavaScript API to reflect the state of that call.
@@ -138,6 +161,7 @@ The `settings` argument allows you to specify various call settings:
 
 - `audio`: (Boolean) activate audio for this call
 - `video`: (Boolean) activate video for this call. The video argument will indicate to the receiver(s) that you want to initiate a video call.
+- `quality`: (String, optional) ['low', 'medium', 'high'] Optionally set a quality preset. By default 'high' is used and should be fine in most scenarios since WebRTC is adaptive on bandwidth.
 
 A call [Participant](#hiParticipant) is a user profile that is either the initiator of that call or a receiver. If a user is connected from more than one device, every connection will be notified about any calls that user is involved in, but the user can participate actively in a call only from one of its connections.  
 
@@ -205,7 +229,7 @@ Emitted when the API client successfully connected to the server and is ready to
 **Note:** Instead of constructing a room directly, consider using [$hi.joinRoom](#hiJoinRoom).  
 
 <a name="hiRoomOpenCall"></a>
-### room.openCall()  
+### room.openCall(options)  
 Similar as [$hi.openCall](#hiopenCall). Only it will call all participants in the room instead of one participant directly.
 
 <a name="hiRoomSendTextMessage"></a>

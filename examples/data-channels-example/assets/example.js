@@ -15,6 +15,21 @@
  * THESE RIGHTS, ON THIS NOTICE, RELY.
  */
 
+//General call options
+var callOptions = {
+  video: true,
+  audio: true,
+  quality: 'high'
+  /* 
+    Bandwidth (up & down) suggestions for quality presets.
+    Note: WebRTC is adaptive on bandwidth - 'high' works fine in most bandwidth scenarios.
+
+    'low' 0.3 - 2 Mbit (below 0.3 Mbit Audio only is recommended)
+    'medium' 2 - 4 Mbit
+    'high' 4 Mbit+
+   */
+};
+
 // Join a call-room by call-code and accesstoken (done after input).
 function initCall(accessToken, callCode) {
   // Connect to HidashHi
@@ -50,7 +65,7 @@ function initCall(accessToken, callCode) {
         room.openCall({
           immediate: true,
           autoAcceptCalls: false, /* When true any incoming call is auto-accepted. Accepting incoming calls can be done by using room.on('call:received') */
-          settings: { video: true, audio: true}
+          settings: callOptions
         });
         
         // Incoming call for the connected call-room.
@@ -93,9 +108,9 @@ function initCall(accessToken, callCode) {
       });
 
     }, function(error) {
-      console.log("Camera was not allowed.", error);
-      alert('Camera permissions denied.');
-    });
+      console.log("Camera / microphone was not allowed.", error);
+      alert('Camera / microphone permissions denied.');
+    }, callOptions);
   });
 }
 // End Join a call-room by call-code

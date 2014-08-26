@@ -37,8 +37,6 @@ require_once("config.php");
       $hi.settings.urls.rest = "<?php echo $__HI_REST_URL; ?>";
       $hi.settings.urls.jsms = "<?php echo $__HI_IO_URL; ?>";
       $hi.settings.urls.auth = "<?php echo $__HI_AUTH_URL; ?>";
-      // For now use the medium quality. On later stage HD quality can be explored (only recommended for high-end pcs).
-      $hi.settings.forceMediumQuality = true;
     </script>
   </head>
   <body>
