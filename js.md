@@ -10,16 +10,22 @@ Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples & Tutorial
 * [Events](#events)
 * [$hi](#hi)
     * [$hi.connect(options)](#hiconnect)
+    * [Event: connected](#hiEventConnected)
     * [$hi.renderMe(containerId, cb, errCb, settings)](#hiRenderMe)
     * [$hi.openCall(options)](#hiOpenCall)
     * [$hi.joinRoom(options)](#hiJoinRoom)
+    * [$hi.enableVideo()](#hiEnableVideo)
+    * [$hi.disableVideo()](#hiDisableVideo)
+    * [$hi.toggleVideo()](#hiToggleVideo)
+    * [$hi.enableAudio()](#hiEnableAudio)
+    * [$hi.disableAudio()](#hiDisableAudio)
+    * [$hi.toggleAudio()](#hiToggleAudio)
     * [$hi.sendTextMessage(options)](#hisendTextMessage)
     * [$hi.sendCustomMessage(options)](#hisendCustomMessage)
-    * [Event: connected](#hiEventConnected)
 * [$hi.Room(options)](#hiRoom)
+    * [Events](#hiRoomEvents)
     * [room.openCall(options)](#hiRoomOpenCall)   
     * [room.sendTextMessage(options)](#hiRoomSendTextMessage)  
-    * [Events](#hiRoomEvents)
 * [$hi.Call(options)](#hiCall)
     * [call.init()](#hiCallInit)  
     * [call.accept()](#hiCallAccept)   
@@ -29,14 +35,16 @@ Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples & Tutorial
     * [call.resume()](#hiCallResume)
     * [call.hangup()](#hiCallHangup)
 * [$hi.Participant(call, options)](#hiParticipant)
-    * [participant.render()](#hiParticipantRender) 
-    * [participant.remove()](#hiParticipantRemove) 
     * [Events](#hiParticipantEvents)
-* [$hi.TextMessage(msg)](#hiTextMessage)
-    * [textMsg.edit(newContent)](#hiTextMessage)
-    * [textMsg.remove()](#hiTextMessageRemove)
-* [$hi.Audio (Extension)](#hiAudio)
-    * [$hi.Audio.init(settings)](#hiAudioInit)
+    * [Low FPS Events](#hiParticipantLowFpsEvents)
+    * [participant.render()](#hiParticipantRender) 
+    * [participant.remove()](#hiParticipantRemove)
+    * [participant.enableVideo()](#hiParticipantEnableVideo)
+    * [participant.disableVideo()](#hiParticipantDisableVideo)
+    * [participant.toggleVideo()](#hiParticipantToggleVideo)
+    * [participant.enableAudio()](#hiParticipantEnableAudio)
+    * [participant.disableAudio()](#hiParticipantDisableAudio)
+    * [participant.toggleAudio()](#hiParticipantToggleAudio)
 * [$hi.getCapabilities](#hiGetCapabilities)
     * [$hi.getCapabilities()](#hiGetCapabilities)
 
@@ -45,11 +53,11 @@ Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples & Tutorial
 
 The Javascript API is intrinsic to the HidashHi real time communication and can be integrated into an application/website to make use of the HidashHi resources.
 Applications may send and receive text messages, place and receive calls, and use other features on the Hidashhi platform.
-The Javascript API is served as a Javascript file from the HidashHi CDN. It is available in a minified version at <provided-HidashHi CDN>/js/api/1/hi.js (or <provided-HidashHi CDN>/js/api/1/hi.dev.js while we are in beta).
+The Javascript API is served as a Javascript file from the HidashHi CDN. It is available in a minified version at [provided-HidashHi CDN]/js/api/1/hi.js.
 
 For usage examples, please have a look at [our API examples on Github](https://github.com/hidashhi/api-examples).
 
-The Javascript API uses the [Socket.io](http://www.socket.io) Client as a transport layer.
+The Javascript API uses the [Socket.io](http://www.socket.io) Client as a transport layer, currently still at Socket.io 0.9.16 since this older version has proven to be the most stable.
 
 [back to top](#toc)
 <br />
@@ -117,9 +125,12 @@ Options:
 });
 </pre>
 
-[back to top](#toc)
-<br />
-<br />
+<a name="hiEventConnected"></a>
+### Event: connected
+`function(connectionId, userId, profiles, credentials){}`  
+
+Emitted when the API client successfully connected to the server and is ready to send and receive messages and calls.
+
 
 <a name="hiRenderMe"></a>
 ### $hi.renderMe(containerId, cb, errCb, settings)
@@ -140,10 +151,6 @@ The `settings` argument is an object which allows you to specify various setting
 - `width`: (String, optional) Optionally set a CSS property to control the width of the video element (e.g. 'auto', '100px' or '100%).
 - `height`: (String, optional) Optionally set a CSS property to control the height of the video element (e.g. 'auto', '100px' or '100%).
 
-
-[back to top](#toc)
-<br />
-<br />
 
 
 <a name="hiOpenCall"></a>
@@ -176,10 +183,6 @@ A call [Participant](#hiParticipant) is a user profile that is either the initia
 A user can be connected from more than one device, however he can actively participate in a call only from one of them.
 
 
-[back to top](#toc)
-<br />
-<br />
-
 <a name="hiJoinRoom"></a>
 ### $hi.joinRoom(options, callback, errorCallback)
 This method returns a [`$hi.Room`](#hiRoom) object that represents the room locally.
@@ -194,9 +197,42 @@ Possible error codes:
 - `no_access` - Private room and the user isn't part of the allowedProfileIds.
 - `full` - The room is full.
 
-[back to top](#toc)
-<br />
-<br />
+
+<a name="hiEnableVideo"></a>
+### $hi.enableVideo()
+Enable all outgoing video (for earlier disabled outgoing video).
+Returns the new state of outgoing video.
+
+
+<a name="hiDisableVideo"></a>
+### $hi.disableVideo()
+Disable all outgoing video.
+Returns the new state of outgoing video.
+
+
+<a name="hiToggleVideo"></a>
+### $hi.toggleVideo()
+Toggle the state of all outgoing video.
+Returns the new state of outgoing video.
+
+
+<a name="hiEnableAudio"></a>
+### $hi.enableAudio()
+Enable all outgoing audio (for earlier disabled outgoing audio).
+Returns the new state of outgoing audio.
+
+
+<a name="hiDisableAudio"></a>
+### $hi.disableAudio()
+Disable all outgoing audio.
+Returns the new state of outgoing audio.
+
+
+<a name="hiToggleAudio"></a>
+### $hi.toggleAudio()
+Toggle the state of all outgoing audio.
+Returns the new state of outgoing audio.
+
 
 <a name="hisendTextMessage"></a>
 ### $hi.sendTextMessage(options)
@@ -210,10 +246,6 @@ The `options` argument requires the following attributes:
 - `from`: YOUR_PROFILE_ID
 - `to`: TO_PROFILE_ID or [TO_PROFILE_ID, …]
 - `text`: STRING with content of your text message
-
-[back to top](#toc)
-<br />
-<br />
 
 <a name="hisendCustomMessage"></a>
 ### $hi.sendCustomMessage(options) 
@@ -230,28 +262,10 @@ Any application that wants to exchange, send or receive data can use these custo
 <br />
 <br />
 
-<a name="hiEventConnected"></a>
-### Event: connected
-`function(connectionId, userId, profiles, credentials){}`  
-
-Emitted when the API client successfully connected to the server and is ready to send and receive messages and calls.
-
-[back to top](#toc)
-<br />
-<br />
-
 
 <a name="hiRoom"></a>
 ## $hi.Room(options)
 **Note:** Instead of constructing a room directly, consider using [$hi.joinRoom](#hiJoinRoom).  
-
-<a name="hiRoomOpenCall"></a>
-### room.openCall(options)  
-Similar to [$hi.openCall](#hiopenCall), except it will call all participants in the room instead of just one participant.
-
-<a name="hiRoomSendTextMessage"></a>
-### room.sendTextMessage()  
-Similar to [$hi.sendTextMessage](#hisendTextMessage), except it will send a text message to the whole room instead of just to one participant.
 
 <a name="hiRoomEvents"></a>
 ### Events
@@ -262,6 +276,14 @@ Possible room events:
 * text:received  
 * call:received  
 * call:accepted  
+
+<a name="hiRoomOpenCall"></a>
+### room.openCall(options)  
+Similar to [$hi.openCall](#hiopenCall), except it will call all participants in the room instead of just one participant.
+
+<a name="hiRoomSendTextMessage"></a>
+### room.sendTextMessage()  
+Similar to [$hi.sendTextMessage](#hisendTextMessage), except it will send a text message to the whole room instead of just to one participant.
 
 [back to top](#toc)
 <br />
@@ -408,24 +430,58 @@ call.participants.forEach(function(index, participant) {
 });
 </pre>
 
-[back to top](#toc)
-<br />
-<br />
+<a name="hiParticipantEvents"></a>
+### Events
+Possible participant events:
+* ringing
+* ringing_timeout
+* accepted
+* rejected
+* hangup
+* rendered
+* video:lowfps:start
+* video:lowfps:stop
+* video:lowfps
+
+
+<a name="hiParticipantLowFpsEvents"></a>
+### Low FPS events
+These events are triggered on the participant object once we're detecting bad video performance on the video stream. Eventhough the Video streams are adapted to the available bandwidth it could occur that the bandwidth is way too less for video to work at all. Also hardware/performance issues on the client device could be a reason for bad video. These events are triggered to give the possibility to inform end-users ("Please close some applications/tabs") or programatically disable video (e.g. by using the toggleVideo functions).
+
+There are 2 options for implementation. Either by start/stop or tick events when the FPS disruption is occurring.
+<pre>
+// Start / stop
+participant.on("video:lowfps:start", function(data) {
+    console.log("Low fps started. FPS: " + data.fps);
+});
+</pre>
+
+<pre>
+participant.on("video:lowfps:stop", function(data) {
+    console.log("FPS back to normal.");
+});
+</pre>
+
+<pre>
+// Using ticks
+participant.on("video:lowfps", function(data) {
+    console.log("Low fps detected. FPS: " + data.fps);
+});
+</pre>
+
+Dev tip: The FPS can be disrupted by using Chrome tabs (only visible tabs are rendered by Chrome, hidden ones will have zero fps).
 
 <a name="hiParticipantRender"></a>
 ### participant.render()
+Depending on the state of the connection it could be that the rendering is delayed till the connection is established. Once the render is executed an event called "rendered" will be triggered on the participant object containing the following information: { settings: { audio: audio-state, video: video-state}, container: html-dom-element }.
 <pre>
 // Render the participant Streaming Player to the DOM.
 participant.render({
   containerId: containerId,
-  width: 320,
-  height: 240
+  width: "100%",
+  height: "auto"
 });
 </pre>
-
-[back to top](#toc)
-<br />
-<br />
 
 <a name="hiParticipantRemove"></a>
 ### participant.remove()
@@ -434,110 +490,39 @@ Remove a participants Streaming Player from the DOM.
 participants.remove(call.participants)
 </pre>
 
-[back to top](#toc)
-<br />
-<br />
+<a name="hiParticipantEnableVideo"></a>
+### participant.enableVideo()
+Enable incoming video for participant (for earlier disabled incoming video).
+Returns the new state of incoming video.
 
-<a name="hiParticipantEvents"></a>
-### Events
-Possible participant events:  
+<a name="hiParticipantDisableVideo"></a>
+### participant.disableVideo()
+Disable incoming video for participant.
+Returns the new state of incoming video.
 
-* ready  
-* ringing  
-* accepted  
-* connecting  
-* connected  
-* stream:start  
-* stream:stop  
-* hangup  
+<a name="hiParticipantToggleVideo"></a>
+### participant.toggleVideo()
+Toggle the state of incoming video for participant.
+Returns the new state of incoming video.
 
-[back to top](#toc)
-<br />
-<br />
+<a name="hiParticipantEnableAudio"></a>
+### participant.enableAudio()
+Enable incoming audio for participant (for earlier disabled incoming audio).
+Returns the new state of incoming audio.
 
-<a name="hiTextMessage"></a>
-## $hi.TextMessage(msg)
-Using the JavaScript API you can
-send and receive text messages between users,
-edit existing text messages
-or delete them from a conversation with ease.
-The platform provides a secure and very flexible set of primitives that allows developers to create various kinds of applications like instant messaging or chat rooms, with applicability in any field you can think of.
+<a name="hiParticipantDisableAudio"></a>
+### participant.disableAudio()
+Disable incoming audio for participant.
+Returns the new state of incoming audio.
 
-[back to top](#toc)
-<br />
-<br />
-
-<a name="hiTextMessageEdit"></a>
-### textMsg.edit(newContent)  
-//...
-
-<a name="hiTextMessageRemove"></a>
-### textMsg.remove()  
-//...
-
-<a name="hiTextEvents"></a>
-### Events 
-//...
-
-<a name="hiAudio"></a>
-## $hi.Audio (Extension)
-The `Audio` extension provides a configurable sound theme, which automatically hooks up to $hi events.
-It plays sounds for an incoming call, dialing, hangup or incoming messages for example.
-
-The Audio singleton is provided when including the full production API `hi.js`.
-If not needed, one can include the base API `hi.base.js` only.
-It can be loaded separately, on top of the base API, from `hi.audio.js`.
+<a name="hiParticipantToggleAudio"></a>
+### participant.toggleAudio()
+Toggle the state of incoming audio for participant.
+Returns the new state of incoming audio.
 
 [back to top](#toc)
 <br />
 <br />
-
-<a name="hiAudioInit"></a>
-### $hi.Audio.init(settings)  
-In the settings object you can manipulate the sound theme.
-It will be merged with the default settings on `$hi.Audio.settings`, which can be manipulated directly as well.
-The `settings.theme` field holds configuration objects for the different sounds in the theme.
-
-Sounds in the default theme:  
-
-* welcome
-* ringing
-* hangup
-* connecting 
-* rejected
-* text_incoming
-* text_outgoing  
-
-A theme settings for a sound in `Audio.settings` basically looks like this:  
-<pre>
-welcome: {
-  url: '/sounds/welcome.mp3',
-  trigger: function(fnPlay, fnStop) {
-    // …  
-  },
-  loop: false,
-  active: true
-},
-</pre>
-
-The `url` is by default prepended with the domain for the HidashHi CDN.
-If you want to use sound files from your own source, just set `$hi.Audio.external = true` and it will not be prepended anymore.
-
-The `trigger` function just hooks up to events on `$hi` and uses the given `fnPlay` and `fnStop` functions to determine when the sound should start playing and when it should be stopped again (in the case of a looped sound).
-The default `trigger` for the `welcome` sound looks like this:  
-<pre>
-function(fnPlay, fnStop) {
-  // Play sound when we get connected to the API server
-  $hi.on('connected', fnPlay);
-}
-</pre>
-
-A theme can be adjusted by manipulating `$hi.Audio.settings` _before_ calling `init`, or be extended/merged by specifying a theme in the argument given to `$hi.Audio.init(settings)`.
-
-[back to top](#toc)
-<br />
-<br />
-
 
 <a name="hiGetCapabilities"></a>
 ### $hi.getCapabilities() 
