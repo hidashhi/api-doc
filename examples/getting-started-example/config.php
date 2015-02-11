@@ -18,9 +18,9 @@
 
 
 // The HidashHi platform settings. (Please use the provided platform for your integration)
-$__HI_AUTH_URL = "https://auth-beta2.hidashhi.com";
-$__HI_REST_URL = "https://rest-beta2.hidashhi.com";
-$__HI_CDN_URL = "https://cdn-beta2.hidashhi.com"; 
-$__HI_IO_URL = "https://io-beta2.hidashhi.com";
+$__HI_AUTH_URL = "https://auth-live.hidashhi.com";
+$__HI_REST_URL = "https://rest-live.hidashhi.com";
+$__HI_CDN_URL = "https://cdn-live.hidashhi.com"; 
+$__HI_IO_URL = "https://io-live.hidashhi.com";
 
 ?>
