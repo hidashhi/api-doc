@@ -137,6 +137,8 @@ The `settings` argument is an object which allows you to specify various setting
 - `audio`: (Boolean) activate audio.
 - `video`: (Boolean) activate video.
 - `quality`: (String, optional) ['low', 'medium', 'high'] Optionally set a quality preset. By default 'high' is used and should be fine in most scenarios since WebRTC is adaptive on bandwidth.
+- `width`: (String, optional) Optionally set a CSS property to control the width of the video element (e.g. 'auto', '100px' or '100%).
+- `height`: (String, optional) Optionally set a CSS property to control the height of the video element (e.g. 'auto', '100px' or '100%).
 
 
 [back to top](#toc)
@@ -179,14 +181,18 @@ A user can be connected from more than one device, however he can actively parti
 <br />
 
 <a name="hiJoinRoom"></a>
-### $hi.joinRoom(options, callback)
+### $hi.joinRoom(options, callback, errorCallback)
 This method returns a [`$hi.Room`](#hiRoom) object that represents the room locally.
 This object will be updated by the JavaScript API to reflect the state of the room and its participants.
 
 A room requires a name to identify the room. The `options` argument requires the following attributes:
-
 - `name`
 - `autoAcceptCalls` (default true)
+ 
+The errorCallback will be called (by providing 1 object argument) when trying to join a restricted room (see Room REST API). The response is in format of errorCallback({ code: error-code, name: room-name, message: friendly-error-message}).
+Possible error codes:
+- `no_access` - Private room and the user isn't part of the allowedProfileIds.
+- `full` - The room is full.
 
 [back to top](#toc)
 <br />
@@ -536,14 +542,23 @@ A theme can be adjusted by manipulating `$hi.Audio.settings` _before_ calling `i
 <a name="hiGetCapabilities"></a>
 ### $hi.getCapabilities() 
 To detect wether a participant has an up-to-date browser supporting all the required components, $hi.getCapabilities() can be called on $hi.js to check the capabilities. 
+This function also hints on other possibilities to continue with the current webbrowser (e.g. by offering to install a small plugin for Internet Explorer or Safari).
+When the browser plugin is already installed the HidashHi platform will work as any other WebRTC-enabled browser.
+To install/offer a plugin to a user for browsers which are supported check the content of the HidashHi capabilities.
 
 <pre>
-$hi.getCapabilities(function(err, caps){
-  if (caps.webrtc){
-    // We're good!
-  } else {
-    // Please update browser / install modern browser.
-  }
+
+// Check HidashHi browser capabilities
+$hi.getCapabilities(function(error, capabilities) {
+    if (capabilities.webrtc) {
+        // we have webrtc so it's all fine - proceed.
+    } else if (capabilities.plugin_offer) {
+        // we don't have webrtc but we can offer the user to install a plugin
+        // The download-link, name and logo can be found in plugin_offer
+        // capabilities.plugin_offer structure: { name: <plugin name>, logo: <plugin logo (256x256 png)>, download: <download link to plugin> }
+    } else {
+        // unsupported browser.
+    }
 });
 </pre>
 [back to top](#toc)
