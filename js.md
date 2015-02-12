@@ -433,15 +433,15 @@ call.participants.forEach(function(index, participant) {
 <a name="hiParticipantEvents"></a>
 ### Events
 Possible participant events:
-* ringing
-* ringing_timeout
-* accepted
-* rejected
-* hangup
-* rendered
-* video:lowfps:start
-* video:lowfps:stop
-* video:lowfps
+* ringing - incoming call for participant.
+* ringing_timeout - ringer timeout, incoming call cancelled.
+* accepted - participant accepted a call.
+* rejected - participant rejected a call.
+* hangup - participant hung up the call.
+* rendered - participant is rendered. This event contains more information about the devices and resolutions used (for remote webcam). See [participant.render()](#hiParticipantRender) for more information.
+* video:lowfps:start - Low FPS occuring (start/stop). See [Low FPS Events](#hiParticipantLowFpsEvents) for more information.
+* video:lowfps:stop - FPS back to normal. See [Low FPS Events](#hiParticipantLowFpsEvents) for more information.
+* video:lowfps - Low FPS occuring (ticks). See [Low FPS Events](#hiParticipantLowFpsEvents) for more information.
 
 
 <a name="hiParticipantLowFpsEvents"></a>
@@ -473,9 +473,34 @@ Dev tip: The FPS can be disrupted by using Chrome tabs (only visible tabs are re
 
 <a name="hiParticipantRender"></a>
 ### participant.render()
-Depending on the state of the connection it could be that the rendering is delayed till the connection is established. Once the render is executed an event called "rendered" will be triggered on the participant object containing the following information: { settings: { audio: audio-state, video: video-state}, container: html-dom-element }.
+Depending on the state of the connection it could be that the rendering is delayed till the connection is established.
+The event "rendered" will be triggered once the rendering is finished. This event will contain information about the call, render container and remote device information (when available).
+Structure of the data in the "rendered" event:
 <pre>
-// Render the participant Streaming Player to the DOM.
+{ 
+   settings: {
+      audio: audio-state,
+      video: video-state,
+      quality: video-quality
+   },
+   device {
+      audio: {
+         id: id-of-audio-device,
+         label: label-of-audio-device
+      },
+      video: {
+         id: id-of-video-device,
+         label: label-of-video-device,
+         width: resolution-of-video,
+         height: resolution-of-video
+      }
+   },
+   container: html-dom-element
+}
+</pre>
+
+Render the participant's video (or audio element) to the DOM.
+<pre>
 participant.render({
   containerId: containerId,
   width: "100%",
