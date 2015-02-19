@@ -1,6 +1,6 @@
 # HidashHi JS API Documentation
 
-Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples & Tutorials](samples_and_how_tos.md) | [FAQ](faq.md)
+Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples](https://github.com/hidashhi/api-doc/tree/master/examples)
 
 <a name="toc"></a>
 ## Table of Contents
@@ -67,20 +67,9 @@ The Javascript API uses the [Socket.io](http://www.socket.io) Client as a transp
 <a name="authentication"></a>
 ## Authentication  
 To use the API on behalf of the user, you need an access token.
-To obtain an access token, the user has to be actually logged in to his Hidashhi account and grant access to your application.
-This process is described in the [OpenAuth2 protocol](http://oauth.net/2/).
+Read more about how to bind your authentication back-end to HidashHi at [Guesttoken guide](https://github.com/hidashhi/api-doc/blob/master/examples/guest_token_guide.md)
 
-### Request a token
-This is the flow for requesting a token:
-
-1. **Your App** generates a local random string (state) to identify the request.
-2. **Your App** redirects the user to the Hidashhi oAuth2 dialog at `<provided-HidashHi Auth-server>/oauth/dialog/?appId=YOUR_APP_ID&redirect_uri=YOUR_APP_URL&state=YOUR_GENERATED_STATE`
-3. **The User allows** access to his account/profile by your application.
-4. **The API** redirects the user to `YOUR_APP_URL?code=ACCESS_CODE&state=YOUR_GENERATED_STATE`
-5. **Your App** checks if the given state is the one it generated earlier for the request.
-6. **Your App** exchanges the delivered ACCESS_CODE for an access token via a REST API request to `<provided-HidashHi REST-server>getTokenForCode/?appId=YOUR_APP_ID&code=ACCESS_CODE`
-
-**An example** of how to request an access token can be found in the [API examples at github](https://github.com/hidashhi/api-examples).
+**An example** of how to obtain an access token can be found in the [Getting started example](https://github.com/hidashhi/api-doc/tree/master/examples/getting-started-example).
 
 [back to top](#toc)
 <br />
