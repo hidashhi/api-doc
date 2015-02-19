@@ -15,6 +15,5 @@ The HidashHi API consists of a Javascript and a RESTful API.
 Other sections:  
 
 - [Guesttoken example](examples/guest_token_guide.md)
-- [Older Examples & Tutorials](https://github.com/hidashhi/api-examples)
 
 Enclosed in this repository you will find the official HidashHi API documentation and a getting started example.
