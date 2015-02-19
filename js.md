@@ -1,6 +1,6 @@
 # HidashHi JS API Documentation
 
-Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples](https://github.com/hidashhi/api-doc/tree/master/examples)
+Navigation: [Overview](README.md) | [REST API](rest.md) | [Examples](https://github.com/hidashhi/api-doc/tree/master/examples)
 
 <a name="toc"></a>
 ## Table of Contents
