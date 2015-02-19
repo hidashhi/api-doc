@@ -1,4 +1,4 @@
-# HidashHi JS API Documentation
+# HidashHi JS SDK Documentation
 
 Navigation: [Overview](README.md) | [REST API](rest.md) | [Examples](https://github.com/hidashhi/api-doc/tree/master/examples)
 
@@ -52,13 +52,13 @@ Navigation: [Overview](README.md) | [REST API](rest.md) | [Examples](https://git
 <a name="introduction"></a>
 ## Introduction
 
-The Javascript API is intrinsic to the HidashHi real time communication and can be integrated into an application/website to make use of the HidashHi resources.
+The Javascript SDK is intrinsic to the HidashHi real time communication and can be integrated into an application/website to make use of the HidashHi resources.
 Applications may send and receive text messages, place and receive calls, and use other features on the Hidashhi platform.
-The Javascript API is served as a Javascript file from the HidashHi CDN. It is available in a minified version at [provided-HidashHi CDN]/js/api/1/hi.js.
+The Javascript SDK is served as a Javascript file from the HidashHi CDN. It is available in a minified version at [provided-HidashHi CDN]/js/api/1/hi.js.
 
 For usage examples, please have a look at [our API examples on Github](https://github.com/hidashhi/api-examples).
 
-The Javascript API uses the [Socket.io](http://www.socket.io) Client as a transport layer, currently still at Socket.io 0.9.16 since this older version has proven to be the most stable.
+The Javascript SDK uses the [Socket.io](http://www.socket.io) Client as a transport layer, currently still at Socket.io 0.9.16 since this older version has proven to be the most stable.
 
 [back to top](#toc)
 <br />
