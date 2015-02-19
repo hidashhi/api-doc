@@ -39,6 +39,7 @@ Navigation: [Overview](overview.md) | [REST API](rest.md) | [Examples & Tutorial
     * [Low FPS Events](#hiParticipantLowFpsEvents)
     * [participant.render()](#hiParticipantRender) 
     * [participant.remove()](#hiParticipantRemove)
+    * [participant.sendDataChannelMessage()](#hiParticipantSendDataChannelMessage)
     * [participant.enableVideo()](#hiParticipantEnableVideo)
     * [participant.disableVideo()](#hiParticipantDisableVideo)
     * [participant.toggleVideo()](#hiParticipantToggleVideo)
@@ -282,7 +283,7 @@ Possible room events:
 Similar to [$hi.openCall](#hiopenCall), except it will call all participants in the room instead of just one participant.
 
 <a name="hiRoomSendTextMessage"></a>
-### room.sendTextMessage()  
+### room.sendTextMessage(options)  
 Similar to [$hi.sendTextMessage](#hisendTextMessage), except it will send a text message to the whole room instead of just to one participant.
 
 [back to top](#toc)
@@ -411,24 +412,9 @@ Hangup a current call. Or, as initiator, you can hangup a call that has not been
 [back to top](#toc)
 
 <a name="hiParticipant"></a>
-## $hi.Participant(call, options)
-When a call is accepted you can render the participant streams to the screen using the following code:
-<pre>
-call.participants.forEach(function(index, participant) {
-  if (!participant.isMe) {
-    var containerId = "hi_call_current_" + call.id + '_player_' + participant.id;
-
-    participant.render({ containerId: containerId });
-    participant.on('state', function(state) {
-      if (state === 'connecting') {
-        //
-      } else if (state === 'playing') {
-        //
-      }
-    });
-  }
-});
-</pre>
+## $hi.Participant()
+**Note:** Instead of constructing a Participant object directly, use participants provided by other means like room.on("participant:enter").
+Participant object is the object which represents the other person remotely. This object will will provide features for sending messages, rendering, managing calls and other participant related actions.
 
 <a name="hiParticipantEvents"></a>
 ### Events
@@ -439,6 +425,7 @@ Possible participant events:
 * rejected - participant rejected a call.
 * hangup - participant hung up the call.
 * rendered - participant is rendered. This event contains more information about the devices and resolutions used (for remote webcam). See [participant.render()](#hiParticipantRender) for more information.
+* data:message - peer-to-peer data message for participant received, see [participant.sendDataChannelMessage()](#hiParticipantSendDataChannelMessage)
 * video:lowfps:start - Low FPS occuring (start/stop). See [Low FPS Events](#hiParticipantLowFpsEvents) for more information.
 * video:lowfps:stop - FPS back to normal. See [Low FPS Events](#hiParticipantLowFpsEvents) for more information.
 * video:lowfps - Low FPS occuring (ticks). See [Low FPS Events](#hiParticipantLowFpsEvents) for more information.
@@ -472,7 +459,7 @@ participant.on("video:lowfps", function(data) {
 Dev tip: The FPS can be disrupted by using Chrome tabs (only visible tabs are rendered by Chrome, hidden ones will have zero fps).
 
 <a name="hiParticipantRender"></a>
-### participant.render()
+### participant.render(settings)
 Depending on the state of the connection it could be that the rendering is delayed till the connection is established.
 The event "rendered" will be triggered once the rendering is finished. This event will contain information about the call, render container and remote device information (when available).
 Structure of the data in the "rendered" event:
@@ -510,10 +497,19 @@ participant.render({
 
 <a name="hiParticipantRemove"></a>
 ### participant.remove()
-Remove a participants Streaming Player from the DOM.
+Remove a participant from the DOM and other entities.
+
+<a name="hiParticipantSendDataChannelMessage"></a>
+### participant.sendDataChannelMessage(message)
+Send any data message (formatted as string) to the participant using the peer-to-peer data channels. This message will be in-sync with ongoing audio or video streams.
+You can also send over JSON or other structures, just be sure to JSON.stringify and JSON.parse the message.
+To receive messages create an eventhandler for "data:message" events on the participant.
 <pre>
-participants.remove(call.participants)
+participant.on('data:message', function(message) {
+  console.log("Peer 2 peer message from client: ", message);
+});
 </pre>
+
 
 <a name="hiParticipantEnableVideo"></a>
 ### participant.enableVideo()
@@ -550,7 +546,7 @@ Returns the new state of incoming audio.
 <br />
 
 <a name="hiGetCapabilities"></a>
-### $hi.getCapabilities() 
+### $hi.getCapabilities(callback) 
 To detect wether a participant has an up-to-date browser supporting all the required components, $hi.getCapabilities() can be called on $hi.js to check the capabilities. 
 This function also hints on other possibilities to continue with the current webbrowser (e.g. by offering to install a small plugin for Internet Explorer or Safari).
 When the browser plugin is already installed the HidashHi platform will work as any other WebRTC-enabled browser.
