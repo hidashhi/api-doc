@@ -550,7 +550,7 @@ $hi.getCapabilities(function(error, capabilities) {
     } else if (capabilities.plugin_offer) {
         // we don't have webrtc but we can offer the user to install a plugin
         // The download-link, name and logo can be found in plugin_offer
-        // capabilities.plugin_offer structure: { name: <plugin name>, logo: <plugin logo (256x256 png)>, download: <download link to plugin> }
+        // capabilities.plugin_offer structure: { name: -plugin name-, logo: -plugin logo (256x256 png)-, download: -download link to plugin- }
     } else {
         // unsupported browser.
     }
