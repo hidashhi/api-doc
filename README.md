@@ -7,10 +7,10 @@ The API can be used to build applications, tools or services around the HidashHi
 To get started check out our Getting started example application:
  - [Getting started example](examples/getting-started-example/)
   
-The HidashHi API consists of a Javascript and a RESTful API.
+The HidashHi API consists of a Javascript SDK and a RESTful API.
 
+- [Javascript SDK ($hi)](js.md)
 - [REST API](rest.md)
-- [Javascript API ($hi)](js.md)
 
 Other sections:  
 
