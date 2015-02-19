@@ -1,0 +1,189 @@
+<!--
+  Hidashhi - Basic integration example.
+
+  For documentation and more examples see: http://github.com/hidashhi
+
+  (c) 2014 Hidashhi
+  THIS WORK ‘AS-IS’ WE PROVIDE.
+  NO WARRANTY EXPRESS OR IMPLIED.
+  WE’VE DONE OUR BEST, TO DEBUG AND TEST.
+  LIABILITY FOR DAMAGES DENIED.
+
+  PERMISSION IS GRANTED HEREBY, TO COPY, SHARE, AND MODIFY.
+  USE AS IS FIT, FREE OR FOR PROFIT.
+  THESE RIGHTS, ON THIS NOTICE, RELY.
+-->
+<html>
+  <head>
+    <meta charset="UTF-8"  />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HidashHi - Getting started example</title>
+    <link href="assets/css/bootstrap-min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="assets/js/jquery-min.js"></script>
+    <script type="text/javascript" src="https://cdn-live.hidashhi.com/js/api/1/hi.js?v=20150219"></script>
+    <!-- Javascript video/chat logic can be found in assets/application.js -->
+    <script type="text/javascript" src="assets/js/application.js"></script>
+    <!-- Group whiteboard logic can be found in assets/whiteboard.js -->
+    <script type="text/javascript" src="assets/js/whiteboard.js"></script>
+    <!-- Participant colors manager -->
+    <script type="text/javascript" src="assets/js/color_manager.js"></script>
+    <script type="text/javascript">
+      // Configure HidashHi URLS
+      $hi.settings.urls.cdn = "https://cdn-live.hidashhi.com";
+      $hi.settings.urls.rest = "https://rest-live.hidashhi.com";
+      $hi.settings.urls.jsms = "https://io-live.hidashhi.com";
+      $hi.settings.urls.auth = "https://auth-live.hidashhi.com";
+    </script>
+  </head>
+  <body>
+    <div class="container">
+    <!-- Unsupported Browser section -->
+      <div class="alert alert-info" id="checkingCapabilities">
+        <h3>Checking browser capabilities...</h3>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100"
+            aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-danger" id="unsupportedBrowser" style="display: none;">
+        <h1>Sorry, you are using a browser we do not support.</h1>
+        <h3>Please consider using any of the industry-standard browsers listed below here.</h3>
+        <div class="row">
+          <div class="col-sm-6 col-md-4">
+            <a class="thumbnail" target="_new" href="https://www.google.com/intl/en/chrome/browser/">
+              <img src="assets/img/chrome_128x128.png" alt="Google Chrome">
+              <div class="caption text-center">
+                <h3>Google Chrome</h3>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <a class="thumbnail" target="_new" href="https://download.mozilla.org/">
+              <img src="assets/img/firefox_128x128.png" alt="Firefox">
+              <div class="caption text-center">
+                <h3>Firefox</h3>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <a class="thumbnail" target="_new" href="http://www.opera.com/download/get/">
+              <img src="assets/img/opera_128x128.png" alt="Opera">
+              <div class="caption text-center">
+                <h3>Opera</h3>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div id="plugin-offer" style="visibility: none;">
+          <h3>Or upgrade your browser with a plugin:</h3>
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <a class="thumbnail" target="_new" id="plugin-offer-link">
+                <img src="#" id="plugin-offer-img"/>
+                <div class="caption text-center">
+                  <h3 id="plugin-offer-name"></h3>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Unsupported Browser section -->
+
+      <!-- Slow video performance warning -->
+      <div class="slow-performance-alert alert">
+        <h3>Slow video performance</h3>
+        <div>
+        <p>We have detected that you computer may not be able to process all of your videostreams fluently. In case
+        you have a lot of applications running on your computer, close down some applications to improve the
+        video quality.</p>
+        </div>
+        <button type="button" class="btn btn-danger" id="slowPerformanceBtn">I understand, ignore this message</button>
+      </div>
+      <!-- End of slow video performance warning -->
+
+      <!-- Multiple connections alert -->
+      <div class="multiple-connections-alert alert">
+        <h3>Another connection under this profile has detected</h3>
+        <div>
+          <p>We have detected another connection to our servers under this profile.
+            Current connection will be closed.</p>
+        </div>
+      </div>
+      <!-- End of slow video performance warning -->
+
+      <!-- Inputs for required data to start the call -->
+      <div id="inputSection">
+        <p class="pull-right"><a href="https://github.com/hidashhi/api-doc/tree/master/examples/getting-started-example"
+                                 target="_blank">source code</a></p>
+
+        <h1>HidashHi Getting Started example: frontend</h1>
+        <form id="input-form">
+          <ol id="instructions-list">
+            <li>
+              Create an accesstoken using the backend
+              (<a target="_new" href="backend/accesstoken.php">backend/accesstoken.php</a>)
+              example. This token should be unique for every participant.
+            </li>
+
+            <li>
+              <p>Enter the accesstoken:</p>
+              <input type="text" id="inputAccesstoken" class="form-control" placeholder="HidashHi accesstoken" value="" />
+            </li>
+
+            <li>
+              <p>Enter the call code to join the existing room or click
+                <a id="generateCallCode">generate</a> to create a new room:</p>
+              <input type="text" id="inputCallCode" class="form-control" placeholder="Call code" value="" />
+            </li>
+
+            <li>
+              <input id="inputBtn" type="submit" value="Press to start call" class="btn btn-default">
+            </li>
+          </ol>
+        </form>
+      </div>
+      <!-- End Inputs for required data to start the call -->
+      <!-- Call section -->
+      <div id="callSection" style="display: none;">
+        <div id="video-waiting">
+          <h3>Waiting for partner to connect..</h3>
+          <p>Share the following call-code: <b><span id="share-call-code"></span></b></p>
+        </div>
+        <div id="whiteboard" class='whiteboard'></div>
+        <div id="video-self-view">
+          <button id="self-pause" class="ctrl-button" title="Pause my video">&nbsp;</button>
+          <button id="self-mute" class="ctrl-button" title="Mute my video">&nbsp;</button>
+        </div>
+        <div id="video-remote-views"></div>
+        <script type="text/template" id="video-remote-view-template">
+          <div id="%1" class="video-remote-view">
+            <button class="ctrl-button other-pause" id="btn-pause-%2" title="Disable video">&nbsp;</button>
+            <button class="ctrl-button other-mute" id="btn-mute-%2" title="Mute">&nbsp;</button>
+          </div>
+        </script>
+        <div id="video-tools">
+          <button id="exitCallBtn" class="btn btn-danger">Exit</button>
+        </div>
+        <!-- Text chat messages -->
+        <div id="video-chat">
+          <div class="highlight">
+            <div id="chat-message-container" class="container chat-container">
+            <!-- Text messages come here -->
+            </div>
+            <div >
+              <form id="chat-send-message">
+                <input disabled id="chat-message-input" type="text" class="form-control" placeholder="Type to chat.." />
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- End Text chat messages -->
+      </div>
+      <!-- End Call section -->
+    </div>
+  </body>
+</html>
