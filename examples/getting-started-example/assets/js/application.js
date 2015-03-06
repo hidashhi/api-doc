@@ -209,7 +209,7 @@ function initTextChat(room) {
     }
   });
 
-  $hi.on('auth:multiconnecton', function(msg) {
+  $hi.on('auth:multiconnection', function(msg) {
     $('.multiple-connections-alert').show();
   });
    
