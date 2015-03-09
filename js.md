@@ -495,7 +495,8 @@ You can also send over JSON or other structures, just be sure to JSON.stringify 
 To receive messages create an eventhandler for "data:message" events on the participant.
 <pre>
 participant.on('data:message', function(message) {
-  console.log("Peer 2 peer message from client: ", message);
+  // var message = { label: "label-of-channel", data: "data received" }
+  console.log("Peer 2 peer message from client: ", message.data);
 });
 </pre>
 
